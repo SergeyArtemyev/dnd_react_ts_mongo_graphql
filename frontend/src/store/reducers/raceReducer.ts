@@ -20,7 +20,7 @@ interface RaceAction {
     payload: Race | [];
 }
 
-export const raceReducer = (state: any = [], action: RaceAction): Race | [] => {
+export const raceReducer = (state: any[] = [], action: RaceAction): Race | any[] => {
     switch (action.type) {
         case 'case':
             return [];
