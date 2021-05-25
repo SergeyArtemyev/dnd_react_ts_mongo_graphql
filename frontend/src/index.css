@@ -1,13 +1,497 @@
+* {
+    box-sizing: border-box;
+}
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font-family: 'Permanent Marker', cursive;
+}
+/* Utility */
+.underline {
+    text-decoration: underline;
+}
+.main-bg {
+    background: #ee5b60;
+}
+.main-color {
+    color: #ee5b60;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.596), 1px 0 1px rgba(0, 0, 0, 0.596), 0 0 2px #000000;
+}
+.main-bg:hover {
+    background: #ee6e73;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #c25054;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.596), 1px 0 1px rgba(0, 0, 0, 0.596), 0 0 2px #000000;
+}
+.p-1 {
+    padding: 1rem;
+}
+/* Navbar */
+nav,
+footer {
+    position: relative;
+    z-index: 2;
+}
+.brand-logo,
+nav ul li a {
+    text-shadow: 0 0 3px #000;
+}
+/* Showcase section */
+
+.showcase {
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 100px;
+    background: url('./img/big-logo1.jpg') no-repeat center/cover;
+    height: 60vh;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5), 0 2px 3px rgba(0, 0, 0, 0.5);
+}
+.showcase:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: radial-gradient(ellipse at 50px 10px, #ffffff 0%, #fff 5%, #cc61613d 85%);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.valign-wrapper {
+    height: 60vh;
+    justify-content: center;
+}
+
+.showcase .card {
+    background: unset;
+}
+.showcase .card-image img {
+    width: auto;
+    margin: 0 auto;
+    padding: 10% 20%;
+}
+
+.showcase .card .card-image .card-title {
+    font-size: 34px;
+    font-weight: bold;
+    color: #000;
+    position: relative;
+    top: -10px;
+    padding: 0;
+}
+
+/* Main-content */
+#main-content {
+    position: relative;
+    background: url('./img/info-bg.jpg') no-repeat left 24% top 30%,
+        url('./img/info-bg3.jpg') no-repeat right 20% bottom 0;
+    border-top: 5px solid #ee5b60;
+    border-bottom: 5px solid #ee5b60;
+}
+#main-content:after {
+    content: '';
+    background: url('./img/left-side-frame.jpg') no-repeat left,
+        url('./img/right-side-frame.jpg') no-repeat right;
+    /* background-size: 16%; */
+    opacity: 0.3;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+@media screen and (max-width: 1100px) {
+    #main-content {
+        background: unset;
+    }
+}
+
+/* Update Section */
+#update-section {
+    border-bottom: 5px solid #ee5b60;
+}
+
+/* Footer */
+#footer {
+    background: url('./img/info-bg2.jpg') no-repeat left 50% bottom -110px;
+    box-shadow: 0 -2px 2px 0 rgba(0, 0, 0, 0.14), 0 -3px 1px -2px rgba(0, 0, 0, 0.12),
+        0 -1px 5px 0 rgba(0, 0, 0, 0.2);
+}
+#footer .row {
+    margin-bottom: 0;
+}
+#footer .developer {
+    margin-top: 20px;
+}
+
+/* Character Creation page */
+#char-create {
+    background: url('./img/body-background3.jpg') no-repeat center center/cover;
+    background-attachment: fixed;
+    padding: 8rem 0;
+}
+#char-create .create-header {
+    margin-top: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.main-window {
+    position: relative;
+    margin-top: 50px;
+    border: 1px solid #f4f4f4;
+    background: #fff;
+    padding: 1rem;
+    min-height: 417px;
+    /* box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12),
+    0 1px 5px 0 rgba(0, 0, 0, 0.2); */
+    box-shadow: 200px 0px 200px 96px rgba(255, 255, 255, 0.9),
+        -200px 0px 200px 96px rgba(255, 255, 255, 0.9);
+}
+
+img {
+    width: 100%;
+}
+/* Tabs */
+#char-create .tabs li a {
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.596), 1px 0 1px rgba(0, 0, 0, 0.596), 0 0 2px #000000;
+    color: #ee6e73;
+}
+#char-create .tabs li a.active {
+    color: #ff4e54;
+}
+
+/* Description of the each tab */
+.description {
+    padding: 1rem;
+    border: 1px solid #e0e0e0;
+}
+.description h3 {
+    margin-top: 0;
+}
+.collapsible-header {
+    justify-content: space-between;
+}
+
+/* Ability score */
+.ab-score {
+    margin-bottom: 2rem;
+}
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    text-align: left;
+    margin-right: 1rem;
+    box-sizing: border-box !important;
+}
+th,
+td {
+    border: 1px solid #ccc;
+    padding: 0.5rem 0.8rem;
+    user-select: none;
+}
+.hidden-input {
+    width: 18px !important;
+    border: none !important;
+    background: none !important;
+    font: inherit !important;
+    height: initial !important;
+}
+
+table.score {
+    width: auto;
+    font-size: 0.8rem;
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+}
+table.score th,
+table.score td {
+    padding: 0.3rem;
+}
+table.score td {
+    font-family: initial;
+}
+
+.ability-input {
+    border: none !important;
+    width: 17px !important;
+    background: none !important;
+    font-family: inherit !important;
+    font-size: 1rem !important;
+    height: initial !important;
+}
+.ability-input:focus {
+    outline: none;
+}
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+.plus,
+.minus {
+    margin-left: -4px;
+    font-size: 0.9rem;
+    color: #4caf50;
+    cursor: pointer;
+    padding: 0;
+    background: unset;
+    border: none;
+    vertical-align: middle;
+}
+.plus:focus,
+.minus:focus {
+    outline: none;
+    background: none;
+}
+.plus:active,
+.minus:active {
+    color: #3a833c;
+}
+
+.minus-icon {
+    visibility: hidden;
+}
+/* Description */
+.avatar {
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    cursor: pointer;
+    position: relative;
+}
+.avatar .main-avatar {
+    filter: blur(2px);
+    width: 70px;
+    position: absolute;
+}
+
+.img-icon {
+    filter: unset;
+    color: #50df55;
+    position: absolute;
+    top: 12px;
+    left: 24px;
+    font-size: 3rem;
+    font-weight: bold;
+}
+#modal1.modal {
+    width: 40%;
+    margin: 100px auto;
+    top: -8% !important;
+    max-height: 100%;
+}
+@media (max-width: 1150px) {
+    #modal1.modal {
+        width: 70%;
+    }
+}
+
+/* Equipment */
+.ch-equipment label {
+    color: #000;
+}
+.main-weapon,
+.secondary-weapon,
+.potions,
+.other-stuff {
+    display: inline-block;
+    width: 49%;
+    margin-bottom: 2rem;
+}
+
+/* Form btns */
+.form-btns {
+    text-align: right;
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+}
+.form-btns button,
+#char-create button[type='submit'] {
+    border: none;
+    background: #ee5b60;
+    padding: 0.4rem 1rem 0.3rem;
+    margin-left: 0.5rem;
+    color: #f4f4f4;
+    font-family: inherit;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.63);
+    transition: background 0.2s ease-in;
+}
+.form-btns button:hover,
+#char-create button[type='submit']:hover {
+    background: #e7585d;
+}
+.form-btns span {
+    vertical-align: super;
+    text-shadow: 0 0 3px #000;
+}
+.form-btns i {
+    text-shadow: 0 0 3px #000;
+}
+#char-create button[type='submit'] {
+    display: none;
+    position: relative;
+    z-index: 3;
+    left: 76.5rem;
+    bottom: -1.27rem;
+    text-shadow: 0 0 3px #000;
+    padding: 0.7rem 1rem;
+}
+/* Character sheet */
+/* Heading */
+#character-sheet {
+    padding: 2rem 0;
+    background: url('./img/body-background3.jpg') no-repeat center center/cover;
+    background-attachment: fixed;
+}
+#character-sheet .heading {
+    background: #fffefe;
+    padding: 1rem 0;
+    margin: 0rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#character-sheet .avatar {
+    cursor: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 149px;
+}
+#character-sheet img {
+    width: 100px;
+    height: 100px;
+}
+#character-sheet .heading .name {
+    margin-left: 1rem;
+    display: inline-block;
+    padding: 0.7rem 0.9rem;
+    background: #ccc;
+    border-radius: 10px;
+}
+
+/* Ability points */
+.ab-point {
+    text-align: center;
+    margin-bottom: 1rem;
+    background: #fff;
+    padding: 1rem 0;
+}
+.ab-point p:first-child {
+    margin-top: 0;
+}
+.ab-border {
+    border: 1px solid #ccc;
+    border-radius: 45%;
+    width: 60px;
+    margin: 0 auto;
+    background: #e7585d;
+    color: #f4f4f4;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.596), 1px 0 1px rgba(0, 0, 0, 0.596), 0 0 2px #000000;
+}
+/* Prof bonus */
+.prof-bonus {
+    background: #fff;
+    margin-bottom: 1rem;
+    padding: 1rem;
+}
+
+/* Savings */
+.savings {
+    background: #fff;
+    margin-bottom: 1rem;
+    padding: 1rem;
+}
+
+/* Skill section */
+.skills {
+    padding: 1rem;
+}
+.circle {
+    display: inline-block;
+    border: 1px solid #ccc;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+.prof-y {
+    border-color: #000;
+    position: relative;
+}
+.prof-y::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Ac-init-speed-hp */
+.ac,
+.init,
+.speed,
+.hp {
+    background: #fff;
+    padding: 1rem;
+}
+
+/* Tabs container */
+
+.tab-container h3 {
+    margin-top: 0;
+}
+.tab-container .tabs .tab a {
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.596), 1px 0 1px rgba(0, 0, 0, 0.596), 0 0 2px #000000;
+    color: #ee6e73;
+}
+.tab-container .tabs .tab a.active,
+.tab-container .tabs .tab a:hover {
+    color: #ff4e54;
+}
+#character-sheet .heading,
+#character-sheet .ab-point,
+#character-sheet .prof-bonus,
+#character-sheet .savings,
+#character-sheet .skills,
+.ac,
+.init,
+.speed,
+.hp {
+    border-radius: 15px;
+}
+.tab-container .tabs {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+.tab-container div div {
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+/* Delete button */
+#delete-btn {
+    padding: 20px;
+    background: #ee6e73;
+    border: none;
+    border-radius: 15px;
+    font-size: 16px;
+    color: #fff;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.596), 1px 0 1px rgba(0, 0, 0, 0.596), 0 0 2px #000000;
+    box-shadow: 0 -2px 2px 0 rgba(0, 0, 0, 0.14), 0 -3px 1px -2px rgba(0, 0, 0, 0.12),
+        0 -1px 5px 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;
 }
