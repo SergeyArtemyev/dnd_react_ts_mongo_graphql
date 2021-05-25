@@ -5,7 +5,7 @@ const classSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    'class features': {
+    classFeatures: {
         hitDie: {
             type: String,
             required: true,
@@ -86,7 +86,7 @@ const classSchema = new mongoose.Schema({
         spellSlots: {
             type: String,
         },
-        spellSaceDc: {
+        spellSaveDc: {
             type: String,
         },
         spellAttackMod: {

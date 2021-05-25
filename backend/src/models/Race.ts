@@ -5,7 +5,7 @@ const raceSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    'racial traits': {
+    racialTraits: {
         abscore: {
             type: String,
             required: true,
