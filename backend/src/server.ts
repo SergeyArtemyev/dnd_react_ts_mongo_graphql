@@ -4,8 +4,11 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import typeDefs from './gql/typeDefs';
 import resolvers from './gql/resolvers';
+import connectDB from './config/db';
 
 dotenv.config();
+
+connectDB();
 
 const app = express();
 
