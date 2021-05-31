@@ -16,7 +16,7 @@ const Showcase = () => {
                                 </div>
                                 <div className='card-action'>
                                     <a
-                                        href='/create-character'
+                                        href='/create'
                                         className='waves-effect waves-light red lighten-1 btn'
                                     >
                                         <i className='material-icons right'>build</i>Create

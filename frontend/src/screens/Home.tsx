@@ -1,14 +1,14 @@
 import { Fragment } from 'react';
 import Showcase from '../components/layout/home/Showcase';
-// import MainContent from "../components/layout/home/MainContent";
-// import UpdateSection from "../components/layout/home/UpdateSection";
+import MainContent from '../components/layout/home/MainContent';
+import UpdateSection from '../components/layout/home/UpdateSection';
 
 const Home = () => {
     return (
         <Fragment>
             <Showcase />
-            {/* <MainContent />
-      <UpdateSection /> */}
+            <MainContent />
+            <UpdateSection />
         </Fragment>
     );
 };
