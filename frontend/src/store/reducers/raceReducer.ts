@@ -1,4 +1,6 @@
-interface Race {
+import { GET_RACES } from '../types/races';
+
+export interface Race {
     id: string;
     racialTraits: {
         abscore: string;
@@ -15,15 +17,15 @@ interface Race {
     };
 }
 
-interface RaceAction {
+export interface RaceAction {
     type: string;
-    payload: Race | [];
+    payload: Array<Race> | [];
 }
 
-export const raceReducer = (state: any[] = [], action: RaceAction): Race | any[] => {
+export const raceReducer = (state: any[] = [], action: RaceAction): Array<Race> | any[] => {
     switch (action.type) {
-        case 'case':
-            return [];
+        case GET_RACES:
+            return action.payload;
         default:
             return state;
     }

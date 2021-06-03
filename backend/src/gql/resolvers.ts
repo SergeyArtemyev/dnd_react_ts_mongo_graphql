@@ -4,6 +4,11 @@ import Race from '../models/Race';
 import CharClass from '../models/Class';
 import Background from '../models/Background';
 import Player from '../models/Player';
+import { getRaces } from '../controllers/races';
+
+export interface ErrorResult {
+    message: string;
+}
 
 type charInput = {
     race: string;
@@ -42,19 +47,34 @@ type charInput = {
 };
 
 const resolvers: IResolvers = {
+    RacesResult: {
+        __resolveType(obj: any, context: GqlContext, info: any) {
+            if (obj.message) {
+                return 'ErrorResult';
+            }
+            return 'RacesArray';
+        },
+    },
     Query: {
         getRaces: async (
             obj: any,
             args: null,
             ctx: GqlContext,
             info: any
-        ): Promise<Array<typeof Race>> => {
+        ): Promise<{ races: Array<typeof Race> } | ErrorResult> => {
             try {
-                const races = await Race.find({});
-                return races;
+                const races = await getRaces();
+                if (races.result) {
+                    return {
+                        races: races.result,
+                    };
+                }
+                return {
+                    message: races.message ? races.message : 'unexpected error occured',
+                };
             } catch (err) {
-                console.log(err);
-                throw err;
+                console.log(err.message);
+                throw new Error('Error occured, check server logs');
             }
         },
         getClasses: async (
@@ -68,7 +88,7 @@ const resolvers: IResolvers = {
                 return classes;
             } catch (err) {
                 console.log(err);
-                throw err;
+                throw new Error('Error occured, check server logs');
             }
         },
         getBackground: async (
@@ -82,7 +102,7 @@ const resolvers: IResolvers = {
                 return background;
             } catch (err) {
                 console.log(err);
-                throw err;
+                throw new Error('Error occured, check server logs');
             }
         },
     },
@@ -101,7 +121,7 @@ const resolvers: IResolvers = {
                 return player;
             } catch (err) {
                 console.log(err);
-                throw err;
+                throw new Error('Error occured, check server logs');
             }
         },
     },

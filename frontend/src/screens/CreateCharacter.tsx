@@ -1,15 +1,18 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { loadRaces } from '../actions/races';
 import { AppState } from '../store/store';
+import { useQuery } from '@apollo/client';
+import { getRaces } from '../gql/queries';
 
 const CreateCharacter = () => {
+    const { data: racesData } = useQuery(getRaces);
     const dispatch = useDispatch();
     const races = useSelector((state: AppState) => state.races);
 
     useEffect(() => {
-        dispatch(loadRaces());
-    }, [races, dispatch]);
+        racesData && dispatch(loadRaces(racesData.getRaces.races));
+    }, [dispatch, racesData]);
 
     const onSubmit = (e: React.MouseEvent<HTMLFormElement, MouseEvent>) => {
         e.preventDefault();

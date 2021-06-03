@@ -1,12 +1,21 @@
 import { gql } from 'apollo-server-express';
 
 const typeDefs = gql`
+    type ErrorResult {
+        message: String!
+    }
+
     type Race {
         _id: ID!
         id: String!
         racialTraits: RacialTraits!
         description: RaceDescription!
     }
+
+    type RacesArray {
+        races: [Race!]
+    }
+    union RacesResult = RacesArray | ErrorResult
 
     type RacialTraits {
         abscore: String!
@@ -148,7 +157,7 @@ const typeDefs = gql`
     }
 
     type Query {
-        getRaces: [Race]
+        getRaces: RacesResult!
         getClasses: [Class]
         getBackground: [Background]
     }
