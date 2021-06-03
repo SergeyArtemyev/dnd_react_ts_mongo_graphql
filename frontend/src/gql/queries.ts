@@ -27,3 +27,46 @@ export const getRaces = gql`
         }
     }
 `;
+
+export const getClasses = gql`
+    query GetClasses {
+        getClasses {
+            ... on ErrorResult {
+                message
+            }
+            ... on ClassesArray {
+                classes {
+                    id
+                    classFeatures {
+                        hitDie
+                        primAbil
+                        saves
+                    }
+                    description {
+                        info
+                        hitDice
+                        hitAtFirstLvl
+                        hitAtHigherLvl
+                        profArmor
+                        profWeapons
+                        profTool
+                        savingThrow
+                        skills
+                        favoredEnemy
+                        fightingStyle
+                        secondWind
+                        naturalExplorer
+                        expertise
+                        sneakAttack
+                        thiefCant
+                        spellInfo
+                        cantrips
+                        spellSlots
+                        spellSaveDc
+                        spellAttackMod
+                    }
+                }
+            }
+        }
+    }
+`;

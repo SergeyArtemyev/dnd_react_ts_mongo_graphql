@@ -39,6 +39,12 @@ const typeDefs = gql`
         description: ClassDescription!
     }
 
+    type ClassesArray {
+        classes: [Class!]
+    }
+
+    union ClassesResult = ClassesArray | ErrorResult
+
     type ClassFeatures {
         hitDie: String!
         primAbil: String!
@@ -158,7 +164,7 @@ const typeDefs = gql`
 
     type Query {
         getRaces: RacesResult!
-        getClasses: [Class]
+        getClasses: ClassesResult!
         getBackground: [Background]
     }
 

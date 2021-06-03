@@ -1,18 +1,25 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { loadRaces } from '../actions/races';
+import { loadClasses } from '../actions/classes';
 import { AppState } from '../store/store';
 import { useQuery } from '@apollo/client';
-import { getRaces } from '../gql/queries';
+import { getRaces, getClasses } from '../gql/queries';
 
 const CreateCharacter = () => {
     const { data: racesData } = useQuery(getRaces);
+    const { data: classesData } = useQuery(getClasses);
     const dispatch = useDispatch();
     const races = useSelector((state: AppState) => state.races);
+    const classes = useSelector((state: AppState) => state.classes);
 
+    // implement useCallback or useMemo fro querying all resources
     useEffect(() => {
-        racesData && dispatch(loadRaces(racesData.getRaces.races));
-    }, [dispatch, racesData]);
+        if (racesData && classesData) {
+            dispatch(loadRaces(racesData.getRaces.races));
+            dispatch(loadClasses(classesData.getClasses.classes));
+        }
+    }, [dispatch, racesData, classesData]);
 
     const onSubmit = (e: React.MouseEvent<HTMLFormElement, MouseEvent>) => {
         e.preventDefault();

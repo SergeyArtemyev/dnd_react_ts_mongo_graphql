@@ -1,8 +1,5 @@
 import Race from '../models/Race';
-
-export class QueryArrayResult<T> {
-    constructor(public message?: string, public result?: Array<T>) {}
-}
+import { QueryArrayResult } from './resultTypes';
 
 export const getRaces = async (): Promise<QueryArrayResult<typeof Race>> => {
     const races = await Race.find({});

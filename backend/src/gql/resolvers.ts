@@ -5,6 +5,7 @@ import CharClass from '../models/Class';
 import Background from '../models/Background';
 import Player from '../models/Player';
 import { getRaces } from '../controllers/races';
+import { getClasses } from '../controllers/classes';
 
 export interface ErrorResult {
     message: string;
@@ -55,6 +56,14 @@ const resolvers: IResolvers = {
             return 'RacesArray';
         },
     },
+    ClassesResult: {
+        __resolveType(obj: any, context: GqlContext, info: any) {
+            if (obj.message) {
+                return 'ErrorResult';
+            }
+            return 'ClassesArray';
+        },
+    },
     Query: {
         getRaces: async (
             obj: any,
@@ -74,7 +83,7 @@ const resolvers: IResolvers = {
                 };
             } catch (err) {
                 console.log(err.message);
-                throw new Error('Error occured, check server logs');
+                throw new Error('Error has occured, check server logs');
             }
         },
         getClasses: async (
@@ -82,13 +91,20 @@ const resolvers: IResolvers = {
             args: null,
             ctx: GqlContext,
             info: any
-        ): Promise<Array<typeof CharClass>> => {
+        ): Promise<{ classes: Array<typeof CharClass> } | ErrorResult> => {
             try {
-                const classes = await CharClass.find({});
-                return classes;
+                const classes = await getClasses();
+                if (classes.result) {
+                    return {
+                        classes: classes.result,
+                    };
+                }
+                return {
+                    message: classes.message ? classes.message : 'unexpected error occured',
+                };
             } catch (err) {
-                console.log(err);
-                throw new Error('Error occured, check server logs');
+                console.error(err.message);
+                throw new Error('Error has occured, check server logs');
             }
         },
         getBackground: async (
@@ -102,7 +118,7 @@ const resolvers: IResolvers = {
                 return background;
             } catch (err) {
                 console.log(err);
-                throw new Error('Error occured, check server logs');
+                throw new Error('Error has occured, check server logs');
             }
         },
     },
@@ -121,7 +137,7 @@ const resolvers: IResolvers = {
                 return player;
             } catch (err) {
                 console.log(err);
-                throw new Error('Error occured, check server logs');
+                throw new Error('Error has occured, check server logs');
             }
         },
     },
