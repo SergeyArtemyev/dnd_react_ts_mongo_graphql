@@ -81,6 +81,12 @@ const typeDefs = gql`
         description: BackgroundDescription!
     }
 
+    type BackgroundArray {
+        background: [Background!]
+    }
+
+    union BackgroundResult = BackgroundArray | ErrorResult
+
     type BackgroundDescription {
         info: String!
         skillProff: [String!]
@@ -165,7 +171,7 @@ const typeDefs = gql`
     type Query {
         getRaces: RacesResult!
         getClasses: ClassesResult!
-        getBackground: [Background]
+        getBackground: BackgroundResult!
     }
 
     type Mutation {

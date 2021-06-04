@@ -70,3 +70,26 @@ export const getClasses = gql`
         }
     }
 `;
+
+export const getBackground = gql`
+    query GetBackground {
+        getBackground {
+            ... on ErrorResult {
+                message
+            }
+            ... on BackgroundArray {
+                background {
+                    id
+                    description {
+                        info
+                        skillProff
+                        backFeature
+                        featureInfo
+                        toolProf
+                        vehicleProff
+                    }
+                }
+            }
+        }
+    }
+`;

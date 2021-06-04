@@ -6,6 +6,7 @@ import Background from '../models/Background';
 import Player from '../models/Player';
 import { getRaces } from '../controllers/races';
 import { getClasses } from '../controllers/classes';
+import { getBackground } from '../controllers/background';
 
 export interface ErrorResult {
     message: string;
@@ -64,6 +65,14 @@ const resolvers: IResolvers = {
             return 'ClassesArray';
         },
     },
+    BackgroundResult: {
+        __resolveType(obj: any, context: GqlContext, info: any) {
+            if (obj.messsage) {
+                return 'ErrorResult';
+            }
+            return 'BackgroundArray';
+        },
+    },
     Query: {
         getRaces: async (
             obj: any,
@@ -112,12 +121,19 @@ const resolvers: IResolvers = {
             args: null,
             ctx: GqlContext,
             info: any
-        ): Promise<Array<typeof Background>> => {
+        ): Promise<{ background: Array<typeof Background> } | ErrorResult> => {
             try {
-                const background = await Background.find({});
-                return background;
+                const background = await getBackground();
+                if (background.result) {
+                    return {
+                        background: background.result,
+                    };
+                }
+                return {
+                    message: background.result ? background.result : 'unexpected error occured',
+                };
             } catch (err) {
-                console.log(err);
+                console.log(err.message);
                 throw new Error('Error has occured, check server logs');
             }
         },

@@ -3,10 +3,12 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { raceReducer } from './reducers/raceReducer';
 import thunk from 'redux-thunk';
 import { classReducer } from './reducers/classReducer';
+import { backgroundReducer } from './reducers/backgroundReducer';
 
 const reducer = combineReducers({
     races: raceReducer,
     classes: classReducer,
+    background: backgroundReducer,
 });
 
 const middleware = [thunk];

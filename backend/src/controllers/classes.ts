@@ -3,7 +3,7 @@ import { QueryArrayResult } from './resultTypes';
 
 export const getClasses = async (): Promise<QueryArrayResult<typeof CharClass>> => {
     try {
-        const classes = await CharClass.find({});
+        const classes: Array<typeof CharClass> = await CharClass.find({});
         if (!classes) {
             return { message: 'Classes not found' };
         }

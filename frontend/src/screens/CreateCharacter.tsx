@@ -1,25 +1,8 @@
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { loadRaces } from '../actions/races';
-import { loadClasses } from '../actions/classes';
-import { AppState } from '../store/store';
-import { useQuery } from '@apollo/client';
-import { getRaces, getClasses } from '../gql/queries';
+import { useLoadData } from '../hooks/useLoadData';
+import Race from '../components/layout/createCharacter/Race/Race';
 
 const CreateCharacter = () => {
-    const { data: racesData } = useQuery(getRaces);
-    const { data: classesData } = useQuery(getClasses);
-    const dispatch = useDispatch();
-    const races = useSelector((state: AppState) => state.races);
-    const classes = useSelector((state: AppState) => state.classes);
-
-    // implement useCallback or useMemo fro querying all resources
-    useEffect(() => {
-        if (racesData && classesData) {
-            dispatch(loadRaces(racesData.getRaces.races));
-            dispatch(loadClasses(classesData.getClasses.classes));
-        }
-    }, [dispatch, racesData, classesData]);
+    useLoadData();
 
     const onSubmit = (e: React.MouseEvent<HTMLFormElement, MouseEvent>) => {
         e.preventDefault();
@@ -55,6 +38,9 @@ const CreateCharacter = () => {
                                         <a href='#test5'>Equipment</a>
                                     </li>
                                 </ul>
+                            </div>
+                            <div id='test1' className='col s12'>
+                                <Race />
                             </div>
                         </div>
                     </form>
