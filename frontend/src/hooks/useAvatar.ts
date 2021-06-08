@@ -13,13 +13,13 @@ export const useAvatar = () => {
 
         setRaceName(e.target.value);
 
-        if (raceName === 'Human') {
+        if (e.target.value === 'Human') {
             setRaseAvatar(human);
-        } else if (raceName === 'Elf') {
+        } else if (e.target.value === 'Elf') {
             setRaseAvatar(elf);
-        } else if (raceName === 'Halfling') {
+        } else if (e.target.value === 'Halfling') {
             setRaseAvatar(halfling);
-        } else if (raceName === 'Dwarf') {
+        } else if (e.target.value === 'Dwarf') {
             setRaseAvatar(dwarf);
         } else {
             setRaseAvatar('');

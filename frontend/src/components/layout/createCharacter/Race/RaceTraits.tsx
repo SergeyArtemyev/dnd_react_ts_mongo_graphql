@@ -1,22 +1,33 @@
-import { useSelector } from 'react-redux';
-import { AppState } from '../../../../store/store';
-import { Race } from '../../../../store/reducers/raceReducer';
+import { FC } from 'react';
+import { useTraits } from '../../../../hooks/useTraits';
+import SelectFactory from '../../../selects/SelectFactory';
 
-const RaceTraits = () => {
+interface RaceTraitsProps {
+    raceName: string;
+}
+
+const RaceTraits: FC<RaceTraitsProps> = ({ raceName }) => {
+    const { abscore, skills } = useTraits(raceName);
+
     return (
         <div>
-            1
-            {/* <ul className="collection">
-        <li className="collection-item">{abscore}</li>
-        {skills !== undefined
-          ? skills.map((skill) => (
-              <li key={v4()} className="collection-item">
-                {skill}
-              </li>
-            ))
-          : null}
-        {select}
-      </ul> */}
+            <label>Abscore</label>
+            <ul className='collection'>
+                <li className='collection-item'>{abscore}</li>
+            </ul>
+            {skills !== undefined && skills.length > 0 ? (
+                <>
+                    <label>Skills</label>
+                    <ul className='collection'>
+                        {skills.map((skill, index) => (
+                            <li key={index} className='collection-item'>
+                                {skill}
+                            </li>
+                        ))}
+                    </ul>
+                </>
+            ) : null}
+            <SelectFactory raceName={raceName} />
         </div>
     );
 };

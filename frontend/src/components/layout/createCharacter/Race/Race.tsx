@@ -1,16 +1,24 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useAvatar } from '../../../../hooks/useAvatar';
-import { Race as CharRace } from '../../../../store/reducers/raceReducer';
+import { useDispatch } from 'react-redux';
 import human from '../../../../img/form_img/human.jpg';
 import elf from '../../../../img/form_img/elf.jpg';
 import halfling from '../../../../img/form_img/halfling.jpg';
 import dwarf from '../../../../img/form_img/dwarf.jpg';
 import RaceTraits from './RaceTraits';
+import { getPlayerRace } from '../../../../actions/races';
 // import RaceDescription from "./RaceDescription";
 
 const Race = React.memo(() => {
     const { raceAvatar, raceName, onChangeAvatar } = useAvatar();
-    // dispatch race name to player reducer
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        raceName && dispatch(getPlayerRace(raceName));
+    }, [dispatch, raceName]);
+
+    // develop useTraits and use description hooks
     return (
         <div className='race'>
             <h4 className='center-align'>Choose your race</h4>
@@ -46,7 +54,7 @@ const Race = React.memo(() => {
                         </div>
                         <div className='col m6 s6'>
                             <h6>Racial traits</h6>
-                            {raceAvatar !== '' ? <RaceTraits /> : null}
+                            {raceAvatar ? <RaceTraits raceName={raceName} /> : null}
                         </div>
                     </div>
                 </div>

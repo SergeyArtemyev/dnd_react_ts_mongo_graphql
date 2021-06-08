@@ -97,6 +97,7 @@ const typeDefs = gql`
     }
 
     input PlayerInput {
+        name: String!
         race: String!
         playerClass: String!
         str: Int!
@@ -133,6 +134,7 @@ const typeDefs = gql`
     }
 
     type Player {
+        name: String!
         race: String!
         playerClass: String!
         str: Int!

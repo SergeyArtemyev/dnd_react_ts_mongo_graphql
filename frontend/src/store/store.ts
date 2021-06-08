@@ -4,11 +4,13 @@ import { raceReducer } from './reducers/raceReducer';
 import thunk from 'redux-thunk';
 import { classReducer } from './reducers/classReducer';
 import { backgroundReducer } from './reducers/backgroundReducer';
+import { playerReducer } from './reducers/playerReducer';
 
 const reducer = combineReducers({
     races: raceReducer,
     classes: classReducer,
     background: backgroundReducer,
+    player: playerReducer,
 });
 
 const middleware = [thunk];
