@@ -1,5 +1,6 @@
 import { useLoadData } from '../hooks/useLoadData';
 import Race from '../components/layout/createCharacter/Race/Race';
+import CharClass from '../components/layout/createCharacter/Class/Class';
 
 const CreateCharacter = () => {
     useLoadData();
@@ -21,12 +22,12 @@ const CreateCharacter = () => {
                             <div className='col s12'>
                                 <ul className='tabs'>
                                     <li className='tab col s2 offset-s1'>
-                                        <a className='active' href='#test1'>
+                                        <a className='active' href='#race'>
                                             Race
                                         </a>
                                     </li>
                                     <li className='tab col s2'>
-                                        <a href='#test2'>Class</a>
+                                        <a href='#class'>Class</a>
                                     </li>
                                     <li className='tab col s2'>
                                         <a href='#test3'>Ability</a>
@@ -39,8 +40,11 @@ const CreateCharacter = () => {
                                     </li>
                                 </ul>
                             </div>
-                            <div id='test1' className='col s12'>
+                            <div id='race' className='col s12'>
                                 <Race />
+                            </div>
+                            <div id='class' className='col s12'>
+                                <CharClass />
                             </div>
                         </div>
                     </form>

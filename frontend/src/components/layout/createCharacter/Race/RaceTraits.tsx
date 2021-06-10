@@ -8,7 +8,6 @@ interface RaceTraitsProps {
 
 const RaceTraits: FC<RaceTraitsProps> = ({ raceName }) => {
     const { abscore, skills } = useTraits(raceName);
-
     return (
         <div>
             <label>Abscore</label>

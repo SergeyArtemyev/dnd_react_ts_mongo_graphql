@@ -7,14 +7,17 @@ import halfling from '../../../../img/form_img/halfling.jpg';
 import dwarf from '../../../../img/form_img/dwarf.jpg';
 import RaceTraits from './RaceTraits';
 import { getPlayerRace } from '../../../../actions/races';
-// import RaceDescription from "./RaceDescription";
+//@ts-ignore
+import M from 'materialize-css/dist/js/materialize.js';
+
+import RaceDescription from './RaceDescription';
 
 const Race = React.memo(() => {
     const { raceAvatar, raceName, onChangeAvatar } = useAvatar();
-
     const dispatch = useDispatch();
 
     useEffect(() => {
+        M.AutoInit();
         raceName && dispatch(getPlayerRace(raceName));
     }, [dispatch, raceName]);
 
@@ -26,7 +29,7 @@ const Race = React.memo(() => {
                 <div className='col s12 m12 l6'>
                     <div className='row'>
                         <div className='col m6 s6'>
-                            <div className='input-fields col s12 m12'>
+                            <div className='input-field col s12 m12'>
                                 <select
                                     onChange={onChangeAvatar}
                                     name='race'
@@ -58,7 +61,9 @@ const Race = React.memo(() => {
                         </div>
                     </div>
                 </div>
-                {/* <div className="col s12 m12 l6">{racePicture !== "" ? <RaceDescription /> : null}</div> */}
+                <div className='col s12 m12 l6'>
+                    {raceAvatar !== '' ? <RaceDescription raceName={raceName} /> : null}
+                </div>
             </div>
         </div>
     );

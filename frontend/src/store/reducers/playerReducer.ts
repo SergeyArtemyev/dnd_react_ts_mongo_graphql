@@ -1,9 +1,17 @@
 import { GET_PLAYER_RACE } from '../types/races';
+import {
+    GET_PLAYER_CANTRIPS,
+    GET_PLAYER_EXTRA_LANGUAGE,
+    GET_PLAYER_TOOL_PROFICIENCY,
+} from '../types/player';
 
 export interface Player {
-    name?: string;
     race?: string;
+    name?: string;
     playerClass?: string;
+    extraLanguage?: string;
+    cantrip?: string;
+    toolProf?: string;
     str?: number;
     strMod?: number;
     strengthPoints?: number;
@@ -50,6 +58,21 @@ export const playerReducer = (state: Player = {}, action: PlayerAction) => {
             return {
                 ...state,
                 race: payload,
+            };
+        case GET_PLAYER_EXTRA_LANGUAGE:
+            return {
+                ...state,
+                extraLanguage: payload,
+            };
+        case GET_PLAYER_CANTRIPS:
+            return {
+                ...state,
+                cantrip: payload,
+            };
+        case GET_PLAYER_TOOL_PROFICIENCY:
+            return {
+                ...state,
+                toolProf: payload,
             };
         default:
             return state;
