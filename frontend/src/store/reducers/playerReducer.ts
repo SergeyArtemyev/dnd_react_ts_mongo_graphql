@@ -1,8 +1,9 @@
-import { GET_PLAYER_RACE } from '../types/races';
 import {
     GET_PLAYER_CANTRIPS,
     GET_PLAYER_EXTRA_LANGUAGE,
     GET_PLAYER_TOOL_PROFICIENCY,
+    GET_PLAYER_RACE,
+    GET_PLAYER_CLASS,
 } from '../types/player';
 
 export interface Player {
@@ -58,6 +59,11 @@ export const playerReducer = (state: Player = {}, action: PlayerAction) => {
             return {
                 ...state,
                 race: payload,
+            };
+        case GET_PLAYER_CLASS:
+            return {
+                ...state,
+                playerClass: payload,
             };
         case GET_PLAYER_EXTRA_LANGUAGE:
             return {

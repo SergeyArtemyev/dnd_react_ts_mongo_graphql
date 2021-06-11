@@ -1,9 +1,16 @@
+import { useEffect } from 'react';
 import { useLoadData } from '../hooks/useLoadData';
 import Race from '../components/layout/createCharacter/Race/Race';
 import CharClass from '../components/layout/createCharacter/Class/Class';
+//@ts-ignore
+import M from 'materialize-css/dist/js/materialize.js';
 
 const CreateCharacter = () => {
     useLoadData();
+
+    useEffect(() => {
+        M.AutoInit();
+    }, []);
 
     const onSubmit = (e: React.MouseEvent<HTMLFormElement, MouseEvent>) => {
         e.preventDefault();

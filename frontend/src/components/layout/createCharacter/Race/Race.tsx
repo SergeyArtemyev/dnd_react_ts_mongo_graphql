@@ -7,17 +7,14 @@ import halfling from '../../../../img/form_img/halfling.jpg';
 import dwarf from '../../../../img/form_img/dwarf.jpg';
 import RaceTraits from './RaceTraits';
 import { getPlayerRace } from '../../../../actions/races';
-//@ts-ignore
-import M from 'materialize-css/dist/js/materialize.js';
 
 import RaceDescription from './RaceDescription';
 
 const Race = React.memo(() => {
-    const { raceAvatar, raceName, onChangeAvatar } = useAvatar();
+    const { avatar: raceAvatar, name: raceName, onChangeAvatar } = useAvatar();
     const dispatch = useDispatch();
 
     useEffect(() => {
-        M.AutoInit();
         raceName && dispatch(getPlayerRace(raceName));
     }, [dispatch, raceName]);
 
