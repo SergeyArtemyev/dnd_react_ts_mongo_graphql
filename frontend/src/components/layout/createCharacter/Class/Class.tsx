@@ -7,7 +7,7 @@ import rogue from '../../../../img/form_img/rogue.jpeg';
 import sorcerer from '../../../../img/form_img/sorcerer.jpeg';
 import { getPlayerClass } from '../../../../actions/classes';
 import ClassFeatures from './ClassFeatures';
-// import ClassDescription from "./ClassDescription";
+import ClassDescription from './ClassDescription';
 
 const Class = React.memo(() => {
     const { avatar: classAvatar, name: className, onChangeAvatar } = useAvatar();
@@ -57,7 +57,9 @@ const Class = React.memo(() => {
                         </div>
                     </div>
                 </div>
-                {/* <div className="col s12 m12 l6">{classPicture !== "" ? <ClassDescription /> : null}</div> */}
+                <div className='col s12 m12 l6'>
+                    {classAvatar !== '' ? <ClassDescription className={className} /> : null}
+                </div>
             </div>
         </div>
     );

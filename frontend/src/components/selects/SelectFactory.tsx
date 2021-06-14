@@ -1,48 +1,24 @@
-import { FC, useState, useEffect } from 'react';
+import { FC } from 'react';
 import { useSelectData } from '../../hooks/useSelectData';
 import Select from './Select';
 
 interface SelectFactoryProps {
-    raceName?: string;
+    dataName: string;
+    selectName: string;
+    label: string;
 }
 
-const SelectFactory: FC<SelectFactoryProps> = ({ raceName }) => {
-    const [fullLabel, setFullLabel] = useState<string[]>();
-
+const SelectFactory: FC<SelectFactoryProps> = ({ dataName, selectName, label }) => {
     const selectDataObject = useSelectData();
-
-    // for race traits selects
-    useEffect(() => {
-        if (raceName) {
-            switch (raceName) {
-                case 'Human':
-                    setFullLabel(['Extra Language']);
-                    break;
-                case 'Elf':
-                    setFullLabel(['Cantrips', 'Extra Language']);
-                    break;
-                case 'Dwarf':
-                    setFullLabel(['Tool Proficiensy']);
-                    break;
-                default:
-                    setFullLabel(undefined);
-            }
-        }
-    }, [raceName]);
-
     return (
         <>
-            {fullLabel?.map((label: string, index: number) => (
-                <div key={index}>
-                    <label>{label}</label>
-                    <select className='browser-default' id={label}>
-                        <option value='none' defaultValue='true'>
-                            - Choose {label} -
-                        </option>
-                        <Select raceName={raceName} label={label} selectData={selectDataObject} />
-                    </select>
-                </div>
-            ))}
+            <label>{label}</label>
+            <select className='browser-default' id={selectName} name={selectName}>
+                <option value='none' defaultValue='true'>
+                    - Choose {label} -
+                </option>
+                <Select dataName={dataName} label={label} selectData={selectDataObject} />
+            </select>
         </>
     );
 };

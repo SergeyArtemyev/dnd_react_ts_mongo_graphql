@@ -26,7 +26,26 @@ const RaceTraits: FC<RaceTraitsProps> = ({ raceName }) => {
                     </ul>
                 </>
             ) : null}
-            <SelectFactory raceName={raceName} />
+            {raceName === 'Human' && (
+                <SelectFactory
+                    dataName={raceName}
+                    selectName='extraLanguage'
+                    label='Extra Language'
+                />
+            )}
+            {raceName === 'Elf' && (
+                <>
+                    <SelectFactory dataName={raceName} selectName='cantrip' label='Cantrips' />
+                    <SelectFactory
+                        dataName={raceName}
+                        selectName='extraLanguage'
+                        label='Extra Language'
+                    />
+                </>
+            )}
+            {raceName === 'Dwarf' && (
+                <SelectFactory dataName={raceName} selectName='toolProf' label='Tool Proficiency' />
+            )}
         </div>
     );
 };

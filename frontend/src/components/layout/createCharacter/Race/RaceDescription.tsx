@@ -1,36 +1,25 @@
-import React, { FC, useEffect } from 'react';
-import { useRaceDescription } from '../../../../hooks/useRaceDescription';
+import { FC, useEffect } from 'react';
+import { useDescription } from '../../../../hooks/useDescription';
 //@ts-ignore
 import M from 'materialize-css/dist/js/materialize.min.js';
+import { useChangeArrow } from '../../../../hooks/useChangeArrow';
 
 interface RaceDescriptionProps {
     raceName: string;
 }
 
 const RaceDescription: FC<RaceDescriptionProps> = ({ raceName }) => {
-    const { info, abScInc, age, alignment, size, speed, languages } = useRaceDescription(raceName);
+    const { info, abScInc, age, alignment, size, speed, languages } = useDescription(
+        'race',
+        raceName
+    );
 
     useEffect(() => {
         // Initialize Material JS
         M.AutoInit();
     });
 
-    const changeArrow = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-        let iconArrow = document.querySelectorAll('.icon-arrow');
-        let lis = document.querySelectorAll('.desc-li');
-        for (let i = 0; i < lis.length; i++) {
-            if (
-                (e.target as HTMLDivElement).parentElement === lis[i] ||
-                (e.target as HTMLDivElement).parentElement!.parentElement === lis[i]
-            ) {
-                if (iconArrow[i].innerHTML === 'arrow_downward') {
-                    iconArrow[i].innerHTML = 'arrow_upward';
-                } else {
-                    iconArrow[i].innerHTML = 'arrow_downward';
-                }
-            }
-        }
-    };
+    const changeArrow = useChangeArrow();
 
     return (
         <div className='description'>

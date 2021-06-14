@@ -18,7 +18,6 @@ const Race = React.memo(() => {
         raceName && dispatch(getPlayerRace(raceName));
     }, [dispatch, raceName]);
 
-    // develop useTraits and use description hooks
     return (
         <div className='race'>
             <h4 className='center-align'>Choose your race</h4>

@@ -1,5 +1,17 @@
 import { useEffect, useState } from 'react';
-import { languages, cantrips, toolProf } from '../utils/selectData';
+import {
+    languages,
+    cantrips,
+    toolProf,
+    fighterStyle,
+    favoredEnemy,
+    naturalExplorer,
+    fighterSkill,
+    rangerSkill,
+    expertise,
+    rogueSkill,
+    sorcererSkill,
+} from '../utils/selectData';
 
 export interface SelectData {
     human: {
@@ -11,6 +23,23 @@ export interface SelectData {
     };
     dwarf: {
         tool: string[];
+    };
+    fighter: {
+        'fighting style': string[];
+        'fighter skill': string[];
+    };
+    ranger: {
+        'favored enemy': string[];
+        language: string[];
+        'natural explorer': string[];
+        'ranger skill': string[];
+    };
+    rogue: {
+        expertise: string[];
+        'rogue skill': string[];
+    };
+    sorcerer: {
+        'sorcerer skill': string[];
     };
 }
 
@@ -28,6 +57,23 @@ export const useSelectData = () => {
             },
             dwarf: {
                 tool: toolProf,
+            },
+            fighter: {
+                'fighting style': fighterStyle,
+                'fighter skill': fighterSkill,
+            },
+            ranger: {
+                'favored enemy': favoredEnemy,
+                language: languages,
+                'natural explorer': naturalExplorer,
+                'ranger skill': rangerSkill,
+            },
+            rogue: {
+                expertise: expertise,
+                'rogue skill': rogueSkill,
+            },
+            sorcerer: {
+                'sorcerer skill': sorcererSkill,
             },
         });
     }, []);

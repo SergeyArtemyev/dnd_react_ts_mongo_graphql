@@ -2,14 +2,17 @@ import { useEffect } from 'react';
 import { useLoadData } from '../hooks/useLoadData';
 import Race from '../components/layout/createCharacter/Race/Race';
 import CharClass from '../components/layout/createCharacter/Class/Class';
+import Abilities from '../components/layout/createCharacter/Abilities/Abilities';
 //@ts-ignore
 import M from 'materialize-css/dist/js/materialize.js';
+import initAbility from '../utils/initAbility';
 
 const CreateCharacter = () => {
     useLoadData();
 
     useEffect(() => {
         M.AutoInit();
+        initAbility();
     }, []);
 
     const onSubmit = (e: React.MouseEvent<HTMLFormElement, MouseEvent>) => {
@@ -37,7 +40,7 @@ const CreateCharacter = () => {
                                         <a href='#class'>Class</a>
                                     </li>
                                     <li className='tab col s2'>
-                                        <a href='#test3'>Ability</a>
+                                        <a href='#ability'>Ability</a>
                                     </li>
                                     <li className='tab col s2'>
                                         <a href='#test4'>Description</a>
@@ -52,6 +55,9 @@ const CreateCharacter = () => {
                             </div>
                             <div id='class' className='col s12'>
                                 <CharClass />
+                            </div>
+                            <div id='ability' className='col s12'>
+                                <Abilities />
                             </div>
                         </div>
                     </form>
