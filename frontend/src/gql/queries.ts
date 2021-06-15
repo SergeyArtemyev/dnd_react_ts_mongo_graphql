@@ -85,7 +85,7 @@ export const getBackground = gql`
                         skillProff
                         backFeature
                         featureInfo
-                        toolProf
+                        toolProff
                         vehicleProff
                     }
                 }

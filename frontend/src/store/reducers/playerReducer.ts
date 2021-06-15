@@ -1,10 +1,4 @@
-import {
-    GET_PLAYER_CANTRIPS,
-    GET_PLAYER_EXTRA_LANGUAGE,
-    GET_PLAYER_TOOL_PROFICIENCY,
-    GET_PLAYER_RACE,
-    GET_PLAYER_CLASS,
-} from '../types/player';
+import { GET_PLAYER_RACE, GET_PLAYER_CLASS, GET_PLAYER_AVATAR, GET_PLAYER_BACKGROUND } from '../types/player';
 
 export interface Player {
     race?: string;
@@ -65,20 +59,15 @@ export const playerReducer = (state: Player = {}, action: PlayerAction) => {
                 ...state,
                 playerClass: payload,
             };
-        case GET_PLAYER_EXTRA_LANGUAGE:
+        case GET_PLAYER_AVATAR:
             return {
                 ...state,
-                extraLanguage: payload,
+                avatar: payload,
             };
-        case GET_PLAYER_CANTRIPS:
+        case GET_PLAYER_BACKGROUND:
             return {
                 ...state,
-                cantrip: payload,
-            };
-        case GET_PLAYER_TOOL_PROFICIENCY:
-            return {
-                ...state,
-                toolProf: payload,
+                background: payload,
             };
         default:
             return state;

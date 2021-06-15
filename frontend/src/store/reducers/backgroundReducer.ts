@@ -7,7 +7,7 @@ export interface Background {
         skillProff: string[];
         backFeature: string;
         featureInfo: string;
-        toolProf: string;
+        toolProff: string;
         vehicleProff: string;
     };
 }
@@ -17,10 +17,7 @@ interface BackroundAction {
     payload: Array<Background>;
 }
 
-export const backgroundReducer = (
-    state: any[] = [],
-    action: BackroundAction
-): Array<Background> | any[] => {
+export const backgroundReducer = (state: any[] = [], action: BackroundAction): Array<Background> | any[] => {
     switch (action.type) {
         case GET_BACKGROUND:
             return action.payload;

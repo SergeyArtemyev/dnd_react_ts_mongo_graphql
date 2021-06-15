@@ -19,7 +19,7 @@ const backgroundSchema = new mongoose.Schema({
             type: String,
             required: true,
         },
-        toolProf: {
+        toolProff: {
             type: String,
         },
         vehicleProff: {

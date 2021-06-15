@@ -11,6 +11,8 @@ import {
     expertise,
     rogueSkill,
     sorcererSkill,
+    background,
+    extraSkill,
 } from '../utils/selectData';
 
 export interface SelectData {
@@ -40,6 +42,12 @@ export interface SelectData {
     };
     sorcerer: {
         'sorcerer skill': string[];
+    };
+    background: {
+        background: string[];
+    };
+    'haunted one': {
+        'extra skill': string[];
     };
 }
 
@@ -74,6 +82,12 @@ export const useSelectData = () => {
             },
             sorcerer: {
                 'sorcerer skill': sorcererSkill,
+            },
+            background: {
+                background: background,
+            },
+            'haunted one': {
+                'extra skill': extraSkill,
             },
         });
     }, []);

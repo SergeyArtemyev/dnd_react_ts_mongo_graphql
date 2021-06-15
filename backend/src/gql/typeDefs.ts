@@ -92,7 +92,7 @@ const typeDefs = gql`
         skillProff: [String!]
         backFeature: String!
         featureInfo: String!
-        toolProf: String
+        toolProff: String
         vehicleProff: String
     }
 
