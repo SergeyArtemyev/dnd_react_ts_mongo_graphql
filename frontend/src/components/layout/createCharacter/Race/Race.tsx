@@ -7,14 +7,15 @@ import halfling from '../../../../img/form_img/halfling.jpg';
 import dwarf from '../../../../img/form_img/dwarf.jpg';
 import RaceTraits from './RaceTraits';
 import { getPlayerRace } from '../../../../actions/races';
-
 import RaceDescription from './RaceDescription';
+import initAbility from '../../../../utils/initAbility';
 
 const Race = React.memo(() => {
     const { avatar: raceAvatar, name: raceName, onChangeAvatar } = useAvatar();
     const dispatch = useDispatch();
 
     useEffect(() => {
+        initAbility();
         raceName && dispatch(getPlayerRace(raceName));
     }, [dispatch, raceName]);
 
@@ -29,7 +30,7 @@ const Race = React.memo(() => {
                                 <select
                                     onChange={onChangeAvatar}
                                     name='race'
-                                    id='race'
+                                    id='races'
                                     className='icons'
                                 >
                                     <option value=''>Choose Race</option>

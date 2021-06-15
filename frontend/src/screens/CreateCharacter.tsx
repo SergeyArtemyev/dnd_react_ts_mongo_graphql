@@ -5,14 +5,12 @@ import CharClass from '../components/layout/createCharacter/Class/Class';
 import Abilities from '../components/layout/createCharacter/Abilities/Abilities';
 //@ts-ignore
 import M from 'materialize-css/dist/js/materialize.js';
-import initAbility from '../utils/initAbility';
 
 const CreateCharacter = () => {
     useLoadData();
 
     useEffect(() => {
         M.AutoInit();
-        initAbility();
     }, []);
 
     const onSubmit = (e: React.MouseEvent<HTMLFormElement, MouseEvent>) => {
