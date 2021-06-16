@@ -1,66 +1,37 @@
-import React, { useContext } from 'react';
-// import BackgroundContext from "../../../../context/Background/backgroundContext";
+import { FC } from 'react';
+import SelectFactory from '../../../selects/SelectFactory';
 
-// import AdLang from "../../../selects/AdLang";
-// import AdLang1 from "../../../selects/AdLang1";
-// import AdLang2 from "../../../selects/AdLang2";
-// import ArtisanTool from "../../../selects/ArtisanTool";
-// import GameSet from "../../../selects/GameSet";
+interface BackOptionsProps {
+    background: string;
+}
 
-// const BackOptions = () => {
-//   const backgroundContext = useContext(BackgroundContext);
-//   const { background } = backgroundContext;
-//   let newSelect;
-//   switch (background) {
-//     case "Acolyte":
-//       newSelect = (
-//         <>
-//           <AdLang1 />
-//           <AdLang2 />
-//         </>
-//       );
-//       break;
-//     case "Criminal or Spy":
-//       newSelect = (
-//         <>
-//           <GameSet />
-//         </>
-//       );
-//       break;
-//     case "Folk Hero":
-//       newSelect = (
-//         <>
-//           <ArtisanTool />
-//         </>
-//       );
-//       break;
-//     case "Haunted One":
-//       newSelect = (
-//         <>
-//           <AdLang />
-//         </>
-//       );
-//       break;
-//     case "Sage":
-//       newSelect = (
-//         <>
-//           <AdLang1 />
-//           <AdLang2 />
-//         </>
-//       );
-//       break;
-//     case "Soldier":
-//       newSelect = (
-//         <>
-//           <GameSet />
-//         </>
-//       );
-//       break;
-//     default:
-//       newSelect = null;
-//   }
+const BackOptions: FC<BackOptionsProps> = ({ background }) => {
+    switch (background) {
+        case 'Acolyte':
+            return (
+                <>
+                    <SelectFactory dataName={background} selectName='adLang1' label='Additional Language' />
+                    <SelectFactory dataName={background} selectName='adLang2' label='Additional Language' />
+                </>
+            );
+        case 'Criminal or Spy':
+            return <SelectFactory dataName={background} selectName='gameSet' label='Game Set' />;
+        case 'Folk Hero':
+            return <SelectFactory dataName={background} selectName='artisanTool' label='Artisan Tool' />;
+        case 'Haunted One':
+            return <SelectFactory dataName={background} selectName='adLang' label='Additional Language' />;
+        case 'Sage':
+            return (
+                <>
+                    <SelectFactory dataName={background} selectName='adLang1' label='Additional Language' />
+                    <SelectFactory dataName={background} selectName='adLang2' label='Additional Language' />
+                </>
+            );
+        case 'Soldier':
+            return <SelectFactory dataName={background} selectName='gameSet' label='Game Set' />;
+        default:
+            return <></>;
+    }
+};
 
-//   return <ul>{newSelect}</ul>;
-// };
-
-// export default BackOptions;
+export default BackOptions;

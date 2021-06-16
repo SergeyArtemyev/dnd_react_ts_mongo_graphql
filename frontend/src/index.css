@@ -87,15 +87,13 @@ nav ul li a {
 /* Main-content */
 #main-content {
     position: relative;
-    background: url('./img/info-bg.jpg') no-repeat left 24% top 30%,
-        url('./img/info-bg3.jpg') no-repeat right 20% bottom 0;
+    background: url('./img/info-bg.jpg') no-repeat left 24% top 30%, url('./img/info-bg3.jpg') no-repeat right 20% bottom 0;
     border-top: 5px solid #ee5b60;
     border-bottom: 5px solid #ee5b60;
 }
 #main-content:after {
     content: '';
-    background: url('./img/left-side-frame.jpg') no-repeat left,
-        url('./img/right-side-frame.jpg') no-repeat right;
+    background: url('./img/left-side-frame.jpg') no-repeat left, url('./img/right-side-frame.jpg') no-repeat right;
     /* background-size: 16%; */
     opacity: 0.3;
     top: 0;
@@ -120,8 +118,7 @@ nav ul li a {
 /* Footer */
 #footer {
     background: url('./img/info-bg2.jpg') no-repeat left 50% bottom -110px;
-    box-shadow: 0 -2px 2px 0 rgba(0, 0, 0, 0.14), 0 -3px 1px -2px rgba(0, 0, 0, 0.12),
-        0 -1px 5px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 -2px 2px 0 rgba(0, 0, 0, 0.14), 0 -3px 1px -2px rgba(0, 0, 0, 0.12), 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
 }
 #footer .row {
     margin-bottom: 0;
@@ -151,8 +148,7 @@ nav ul li a {
     min-height: 417px;
     /* box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12),
     0 1px 5px 0 rgba(0, 0, 0, 0.2); */
-    box-shadow: 200px 0px 200px 96px rgba(255, 255, 255, 0.9),
-        -200px 0px 200px 96px rgba(255, 255, 255, 0.9);
+    box-shadow: 200px 0px 200px 96px rgba(255, 255, 255, 0.9), -200px 0px 200px 96px rgba(255, 255, 255, 0.9);
 }
 
 img {
@@ -338,7 +334,7 @@ input[type='number']::-webkit-outer-spin-button {
     text-shadow: 0 0 3px #000;
 }
 #char-create button[type='submit'] {
-    display: none;
+    display: block;
     position: relative;
     z-index: 3;
     left: 76.5rem;
@@ -492,7 +488,6 @@ input[type='number']::-webkit-outer-spin-button {
     font-size: 16px;
     color: #fff;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.596), 1px 0 1px rgba(0, 0, 0, 0.596), 0 0 2px #000000;
-    box-shadow: 0 -2px 2px 0 rgba(0, 0, 0, 0.14), 0 -3px 1px -2px rgba(0, 0, 0, 0.12),
-        0 -1px 5px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 -2px 2px 0 rgba(0, 0, 0, 0.14), 0 -3px 1px -2px rgba(0, 0, 0, 0.12), 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
     cursor: pointer;
 }

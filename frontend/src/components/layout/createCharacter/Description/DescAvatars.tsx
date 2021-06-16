@@ -29,7 +29,7 @@ const DescAvatars = () => {
                         <input name='avatar' type='text' value={mainAvatar} style={{ visibility: 'hidden' }} readOnly></input>
                     </a>
                     <div className='input-field col l9 m9 s8'>
-                        <input placeholder='Write your name' id='char_name' name='charName' type='text' className='validate' />
+                        <input id='char_name' name='charName' type='text' className='validate' />
                         <label htmlFor='char_name'>Character Name</label>
                     </div>
                 </div>

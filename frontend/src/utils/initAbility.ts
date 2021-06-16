@@ -283,6 +283,8 @@ function initAbility() {
             points++;
         }
 
+        input.value = value.toString();
+
         if (points > 0) {
             for (let j = 0; j < document.getElementsByClassName('plus-icon').length; j++) {
                 if ((document.getElementsByClassName('ability-input')[j] as HTMLInputElement).value === '15') {
@@ -296,7 +298,6 @@ function initAbility() {
             }
         }
 
-        input.value = value.toString();
         remainingPoints = points.toString();
         document.getElementsByClassName('remaining-points')[0].innerHTML = remainingPoints;
 

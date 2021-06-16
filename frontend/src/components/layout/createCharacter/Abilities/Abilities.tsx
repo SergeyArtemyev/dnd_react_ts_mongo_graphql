@@ -1,7 +1,8 @@
+import React from 'react';
 import AbilityScore from './AbilityScore';
 import AbPoints from './AbPoints';
 
-const Abilities = () => {
+const Abilities = React.memo(() => {
     return (
         <div>
             <h4 className='center-align'>Ability Score</h4>
@@ -11,6 +12,6 @@ const Abilities = () => {
             </div>
         </div>
     );
-};
+});
 
 export default Abilities;

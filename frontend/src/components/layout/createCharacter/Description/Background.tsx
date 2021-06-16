@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getBackground } from '../../../../actions/player';
-// import BackOptions from './BackOptions';
+import BackOptions from './BackOptions';
 import SelectFactory from '../../../selects/SelectFactory';
 
 //@ts-ignore
@@ -67,7 +67,9 @@ const Background = () => {
                         </>
                     ) : null}
                     <div className='row'>
-                        <div className='col l4 m6 s12'>{/* <BackOptions /> */}</div>
+                        <div className='col l4 m6 s12'>
+                            <BackOptions background={backgroundName} />
+                        </div>
                     </div>
                     <ul className='collapsible'>
                         <li>

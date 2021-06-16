@@ -13,6 +13,10 @@ import {
     sorcererSkill,
     background,
     extraSkill,
+    gameSet,
+    artisanTool,
+    lifestyle,
+    alignment,
 } from '../utils/selectData';
 
 export interface SelectData {
@@ -48,6 +52,28 @@ export interface SelectData {
     };
     'haunted one': {
         'extra skill': string[];
+        'additional language': string[];
+    };
+    acolyte: {
+        'additional language': string[];
+    };
+    'criminal or spy': {
+        'game set': string[];
+    };
+    'folk hero': {
+        'artisan tool': string[];
+    };
+    sage: {
+        'additional language': string[];
+    };
+    soldier: {
+        'game set': string[];
+    };
+    lifestyle: {
+        lifestyle: string[];
+    };
+    alignment: {
+        alignment: string[];
     };
 }
 
@@ -88,6 +114,28 @@ export const useSelectData = () => {
             },
             'haunted one': {
                 'extra skill': extraSkill,
+                'additional language': languages,
+            },
+            acolyte: {
+                'additional language': languages,
+            },
+            'criminal or spy': {
+                'game set': gameSet,
+            },
+            'folk hero': {
+                'artisan tool': artisanTool,
+            },
+            sage: {
+                'additional language': languages,
+            },
+            soldier: {
+                'game set': gameSet,
+            },
+            lifestyle: {
+                lifestyle: lifestyle,
+            },
+            alignment: {
+                alignment: alignment,
             },
         });
     }, []);

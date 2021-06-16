@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useAvatar } from '../../../../hooks/useAvatar';
 import { useDispatch } from 'react-redux';
 import human from '../../../../img/form_img/human.jpg';
@@ -14,10 +14,12 @@ const Race = React.memo(() => {
     const { avatar: raceAvatar, name: raceName, onChangeAvatar } = useAvatar();
     const dispatch = useDispatch();
 
+    const initAb = useCallback(initAbility, [raceName]);
+
     useEffect(() => {
-        initAbility();
+        initAb();
         raceName && dispatch(getPlayerRace(raceName));
-    }, [dispatch, raceName]);
+    }, [dispatch, raceName, initAb]);
 
     return (
         <div className='race'>
@@ -27,12 +29,7 @@ const Race = React.memo(() => {
                     <div className='row'>
                         <div className='col m6 s6'>
                             <div className='input-field col s12 m12'>
-                                <select
-                                    onChange={onChangeAvatar}
-                                    name='race'
-                                    id='races'
-                                    className='icons'
-                                >
+                                <select onChange={onChangeAvatar} name='race' id='races' className='icons'>
                                     <option value=''>Choose Race</option>
                                     <option data-icon={human} value='Human'>
                                         Human
@@ -58,9 +55,7 @@ const Race = React.memo(() => {
                         </div>
                     </div>
                 </div>
-                <div className='col s12 m12 l6'>
-                    {raceAvatar !== '' ? <RaceDescription raceName={raceName} /> : null}
-                </div>
+                <div className='col s12 m12 l6'>{raceAvatar !== '' ? <RaceDescription raceName={raceName} /> : null}</div>
             </div>
         </div>
     );
