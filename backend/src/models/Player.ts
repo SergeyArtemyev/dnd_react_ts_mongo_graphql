@@ -5,80 +5,137 @@ const playerSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    extraLanguage: {
+        type: String,
+    },
+    cantrip: {
+        type: String,
+    },
+    toolProff: {
+        type: String,
+    },
     playerClass: {
         type: String,
         required: true,
     },
+    fighterSkill1: {
+        type: String,
+    },
+    fighterSkill2: {
+        type: String,
+    },
+    fightingStyle: {
+        type: String,
+    },
+    rangerSkill1: {
+        type: String,
+    },
+    rangerSkill2: {
+        type: String,
+    },
+    rangerSkill3: {
+        type: String,
+    },
+    favoredEnemy: {
+        type: String,
+    },
+    language: {
+        type: String,
+    },
+    naturalExplorer: {
+        type: String,
+    },
+    rogueSkill1: {
+        type: String,
+    },
+    rogueSkill2: {
+        type: String,
+    },
+    rogueSkill3: {
+        type: String,
+    },
+    rogueSkill4: {
+        type: String,
+    },
+    expertise1: {
+        type: String,
+    },
+    expertise2: {
+        type: String,
+    },
+    sorcererSkill: {
+        type: String,
+    },
     str: {
-        type: Number,
+        type: String,
         required: true,
     },
     strMod: {
-        type: Number,
+        type: String,
         required: true,
     },
     strengthPoints: {
-        type: Number,
+        type: String,
         required: true,
     },
     dex: {
-        type: Number,
+        type: String,
         required: true,
     },
     dexMod: {
-        type: Number,
+        type: String,
         required: true,
     },
     dexterityPoints: {
-        type: Number,
+        type: String,
         required: true,
     },
     con: {
-        type: Number,
+        type: String,
         required: true,
     },
     conMod: {
-        type: Number,
+        type: String,
         required: true,
     },
     constitutionPoints: {
-        type: Number,
+        type: String,
         required: true,
     },
     int: {
-        type: Number,
+        type: String,
         required: true,
     },
     intMod: {
-        type: Number,
+        type: String,
         required: true,
     },
     intelligencePoints: {
-        type: Number,
+        type: String,
         required: true,
     },
     wis: {
-        type: Number,
+        type: String,
         required: true,
     },
     wisMod: {
-        type: Number,
+        type: String,
         required: true,
     },
     wisdomPoints: {
-        type: Number,
+        type: String,
         required: true,
     },
     char: {
-        type: Number,
+        type: String,
         required: true,
     },
     charMod: {
-        type: Number,
+        type: String,
         required: true,
     },
     charismaPoints: {
-        type: Number,
+        type: String,
         required: true,
     },
     avatar: {
@@ -92,6 +149,27 @@ const playerSchema = new mongoose.Schema({
     background: {
         type: String,
         required: true,
+    },
+    adLang: {
+        type: String,
+    },
+    adLang1: {
+        type: String,
+    },
+    adLang2: {
+        type: String,
+    },
+    gameSet: {
+        type: String,
+    },
+    artisanTool: {
+        type: String,
+    },
+    extraSkill1: {
+        type: String,
+    },
+    extraSkill2: {
+        type: String,
     },
     alignment: {
         type: String,
@@ -118,18 +196,34 @@ const playerSchema = new mongoose.Schema({
         required: true,
     },
     height: {
-        type: Number,
+        type: String,
         required: true,
     },
-    width: {
-        type: Number,
+    weight: {
+        type: String,
         required: true,
     },
     age: {
-        type: Number,
+        type: String,
         required: true,
     },
     gender: {
+        type: String,
+        required: true,
+    },
+    mWeapon: {
+        type: String,
+        required: true,
+    },
+    sWeapon: {
+        type: String,
+        required: true,
+    },
+    potions: {
+        type: String,
+        required: true,
+    },
+    stuff: {
         type: String,
         required: true,
     },

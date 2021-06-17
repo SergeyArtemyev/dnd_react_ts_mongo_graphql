@@ -14,7 +14,26 @@ export interface ErrorResult {
 
 type charInput = {
     race: string;
+    extraLanguage?: string;
+    cantrip?: string;
+    toolProff?: string;
     playerClass: string;
+    fighterSkill1?: string;
+    fighterSkill2?: string;
+    fightingStyle?: string;
+    rangerSkill1?: string;
+    rangerSkill2?: string;
+    rangerSkill3?: string;
+    favoredEnemy?: string;
+    language?: string;
+    naturalExplorer?: string;
+    rogueSkill1?: string;
+    rogueSkill2?: string;
+    rogueSkill3?: string;
+    rogueSkill4?: string;
+    expertise1?: string;
+    expertise2?: string;
+    sorcererSkill?: string;
     str: number;
     strMod: number;
     strengthPoints: number;
@@ -36,6 +55,13 @@ type charInput = {
     avatar: string;
     charName: string;
     background: string;
+    adLang?: string;
+    adLang1?: string;
+    adLang2?: string;
+    gameSet?: string;
+    artisanTool?: string;
+    extraSkill1?: string;
+    extraSkill2?: string;
     alignment: string;
     faith: string;
     lifestyle: string;
@@ -46,6 +72,10 @@ type charInput = {
     width: number;
     age: number;
     gender: string;
+    mWeapon: string;
+    sWeapon: string;
+    potions: string;
+    stuff: string;
 };
 
 const resolvers: IResolvers = {
@@ -74,12 +104,7 @@ const resolvers: IResolvers = {
         },
     },
     Query: {
-        getRaces: async (
-            obj: any,
-            args: null,
-            ctx: GqlContext,
-            info: any
-        ): Promise<{ races: Array<typeof Race> } | ErrorResult> => {
+        getRaces: async (obj: any, args: null, ctx: GqlContext, info: any): Promise<{ races: Array<typeof Race> } | ErrorResult> => {
             try {
                 const races = await getRaces();
                 if (races.result) {
@@ -95,12 +120,7 @@ const resolvers: IResolvers = {
                 throw new Error('Error has occured, check server logs');
             }
         },
-        getClasses: async (
-            obj: any,
-            args: null,
-            ctx: GqlContext,
-            info: any
-        ): Promise<{ classes: Array<typeof CharClass> } | ErrorResult> => {
+        getClasses: async (obj: any, args: null, ctx: GqlContext, info: any): Promise<{ classes: Array<typeof CharClass> } | ErrorResult> => {
             try {
                 const classes = await getClasses();
                 if (classes.result) {
@@ -116,12 +136,7 @@ const resolvers: IResolvers = {
                 throw new Error('Error has occured, check server logs');
             }
         },
-        getBackground: async (
-            obj: any,
-            args: null,
-            ctx: GqlContext,
-            info: any
-        ): Promise<{ background: Array<typeof Background> } | ErrorResult> => {
+        getBackground: async (obj: any, args: null, ctx: GqlContext, info: any): Promise<{ background: Array<typeof Background> } | ErrorResult> => {
             try {
                 const background = await getBackground();
                 if (background.result) {
@@ -139,12 +154,7 @@ const resolvers: IResolvers = {
         },
     },
     Mutation: {
-        createCharacter: async (
-            obj: any,
-            args: { input: charInput },
-            ctx: GqlContext,
-            info: any
-        ): Promise<Array<typeof Player>> => {
+        createCharacter: async (obj: any, args: { input: charInput }, ctx: GqlContext, info: any): Promise<Array<typeof Player>> => {
             try {
                 const player = new Player({
                     ...args.input,

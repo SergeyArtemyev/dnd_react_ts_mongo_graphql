@@ -10,12 +10,12 @@ const DescAvatars = () => {
 
     useEffect(() => {
         initAvatars();
-        dispatch(getAvatar(mainAvatar));
-    }, [mainAvatar, dispatch]);
+    }, []);
 
     const onClick = () => {
         let avatar = (document.querySelector('.main-avatar') as HTMLImageElement).src;
         setMainAvatar(avatar);
+        dispatch(getAvatar(avatar));
     };
 
     return (

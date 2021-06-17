@@ -1,48 +1,74 @@
-import { GET_PLAYER_RACE, GET_PLAYER_CLASS, GET_PLAYER_AVATAR, GET_PLAYER_BACKGROUND } from '../types/player';
+import { GET_PLAYER_RACE, GET_PLAYER_CLASS, GET_PLAYER_AVATAR, GET_PLAYER_BACKGROUND, ADD_PLAYER, CLEAR_PLAYER_STATE } from '../types/player';
 
 export interface Player {
     race?: string;
-    name?: string;
-    playerClass?: string;
     extraLanguage?: string;
     cantrip?: string;
-    toolProf?: string;
-    str?: number;
-    strMod?: number;
-    strengthPoints?: number;
-    dex?: number;
-    dexMod?: number;
-    dexterityPoints?: number;
-    con?: number;
-    conMod?: number;
-    constitutionPoints?: number;
-    int?: number;
-    intMod?: number;
-    intelligencePoints?: number;
-    wis?: number;
-    wisMod?: number;
-    wisdomPoints?: number;
-    char?: number;
-    charMod?: number;
-    charismaPoints?: number;
+    toolProff?: string;
+    playerClass?: string;
+    fighterSkill1?: string;
+    fighterSkill2?: string;
+    fightingStyle?: string;
+    rangerSkill1?: string;
+    rangerSkill2?: string;
+    rangerSkill3?: string;
+    favoredEnemy?: string;
+    language?: string;
+    naturalExplorer?: string;
+    rogueSkill1?: string;
+    rogueSkill2?: string;
+    rogueSkill3?: string;
+    rogueSkill4?: string;
+    expertise1?: string;
+    expertise2?: string;
+    sorcererSkill?: string;
+    str?: string;
+    strMod?: string;
+    strengthPoints?: string;
+    dex?: string;
+    dexMod?: string;
+    dexterityPoints?: string;
+    con?: string;
+    conMod?: string;
+    constitutionPoints?: string;
+    int?: string;
+    intMod?: string;
+    intelligencePoints?: string;
+    wis?: string;
+    wisMod?: string;
+    wisdomPoints?: string;
+    char?: string;
+    charMod?: string;
+    charismaPoints?: string;
     avatar?: string;
     charName?: string;
     background?: string;
+    adLang?: string;
+    adLang1?: string;
+    adLang2?: string;
+    gameSet?: string;
+    artisanTool?: string;
+    extraSkill1?: string;
+    extraSkill2?: string;
     alignment?: string;
     faith?: string;
     lifestyle?: string;
     hair?: string;
     skin?: string;
     eyes?: string;
-    height?: number;
-    width?: number;
-    age?: number;
+    height?: string;
+    weight?: string;
+    age?: string;
     gender?: string;
+    mWeapon?: string;
+    sWeapon?: string;
+    potions?: string;
+    stuff?: string;
 }
 
 interface PlayerAction {
     type: string;
-    payload: unknown;
+    payload: object;
 }
 
 export const playerReducer = (state: Player = {}, action: PlayerAction) => {
@@ -69,6 +95,10 @@ export const playerReducer = (state: Player = {}, action: PlayerAction) => {
                 ...state,
                 background: payload,
             };
+        case ADD_PLAYER:
+            return { ...payload };
+        case CLEAR_PLAYER_STATE:
+            return {};
         default:
             return state;
     }

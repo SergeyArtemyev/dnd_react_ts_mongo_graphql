@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './screens/Home';
 import CreateCharacter from './screens/CreateCharacter';
+import Player from './screens/Player';
 import Navbar from './components/Navbar';
 
 import 'materialize-css/dist/css/materialize.min.css';
@@ -14,6 +15,7 @@ const App = () => {
             <Switch>
                 <Route exact path='/' component={Home} />
                 <Route path='/create' component={CreateCharacter} />
+                <Route path='/player' component={Player} />
             </Switch>
             <Footer />
         </Router>

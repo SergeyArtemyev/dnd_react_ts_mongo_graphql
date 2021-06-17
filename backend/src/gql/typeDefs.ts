@@ -97,77 +97,135 @@ const typeDefs = gql`
     }
 
     input PlayerInput {
-        name: String!
         race: String!
+        extraLanguage: String
+        cantrip: String
+        toolProff: String
         playerClass: String!
-        str: Int!
-        strMod: Int!
-        strengthPoints: Int!
-        dex: Int!
-        dexMod: Int!
-        dexterityPoints: Int!
-        con: Int!
-        conMod: Int!
-        constitutionPoints: Int!
-        int: Int!
-        intMod: Int!
-        intelligencePoints: Int!
-        wis: Int!
-        wisMod: Int!
-        wisdomPoints: Int!
-        char: Int!
-        charMod: Int!
-        charismaPoints: Int!
+        fighterSkill1: String
+        fighterSkill2: String
+        fightingStyle: String
+        rangerSkill1: String
+        rangerSkill2: String
+        rangerSkill3: String
+        favoredEnemy: String
+        language: String
+        naturalExplorer: String
+        rogueSkill1: String
+        rogueSkill2: String
+        rogueSkill3: String
+        rogueSkill4: String
+        expertise1: String
+        expertise2: String
+        sorcererSkill: String
+        str: String!
+        strMod: String!
+        strengthPoints: String!
+        dex: String!
+        dexMod: String!
+        dexterityPoints: String!
+        con: String!
+        conMod: String!
+        constitutionPoints: String!
+        int: String!
+        intMod: String!
+        intelligencePoints: String!
+        wis: String!
+        wisMod: String!
+        wisdomPoints: String!
+        char: String!
+        charMod: String!
+        charismaPoints: String!
         avatar: String!
         charName: String!
         background: String!
+        adLang: String
+        adLang1: String
+        adLang2: String
+        gameSet: String
+        artisanTool: String
+        extraSkill1: String
+        extraSkill2: String
         alignment: String!
         faith: String!
         lifestyle: String!
         hair: String!
         skin: String!
         eyes: String!
-        height: Int!
-        width: Int!
-        age: Int!
+        height: String!
+        weight: String!
+        age: String!
         gender: String!
+        mWeapon: String!
+        sWeapon: String!
+        potions: String!
+        stuff: String!
     }
 
     type Player {
-        name: String!
         race: String!
+        extraLanguage: String
+        cantrip: String
+        toolProff: String
         playerClass: String!
-        str: Int!
-        strMod: Int!
-        strengthPoints: Int!
-        dex: Int!
-        dexMod: Int!
-        dexterityPoints: Int!
-        con: Int!
-        conMod: Int!
-        constitutionPoints: Int!
-        int: Int!
-        intMod: Int!
-        intelligencePoints: Int!
-        wis: Int!
-        wisMod: Int!
-        wisdomPoints: Int!
-        char: Int!
-        charMod: Int!
-        charismaPoints: Int!
+        fighterSkill1: String
+        fighterSkill2: String
+        fightingStyle: String
+        rangerSkill1: String
+        rangerSkill2: String
+        rangerSkill3: String
+        favoredEnemy: String
+        language: String
+        naturalExplorer: String
+        rogueSkill1: String
+        rogueSkill2: String
+        rogueSkill3: String
+        rogueSkill4: String
+        expertise1: String
+        expertise2: String
+        sorcererSkill: String
+        str: String!
+        strMod: String!
+        strengthPoints: String!
+        dex: String!
+        dexMod: String!
+        dexterityPoints: String!
+        con: String!
+        conMod: String!
+        constitutionPoints: String!
+        int: String!
+        intMod: String!
+        intelligencePoints: String!
+        wis: String!
+        wisMod: String!
+        wisdomPoints: String!
+        char: String!
+        charMod: String!
+        charismaPoints: String!
         avatar: String!
         charName: String!
         background: String!
+        adLang: String
+        adLang1: String
+        adLang2: String
+        gameSet: String
+        artisanTool: String
+        extraSkill1: String
+        extraSkill2: String
         alignment: String!
         faith: String!
         lifestyle: String!
         hair: String!
         skin: String!
         eyes: String!
-        height: Int!
-        width: Int!
-        age: Int!
+        height: String!
+        weight: String!
+        age: String!
         gender: String!
+        mWeapon: String!
+        sWeapon: String!
+        potions: String!
+        stuff: String!
     }
 
     type Query {
@@ -177,7 +235,7 @@ const typeDefs = gql`
     }
 
     type Mutation {
-        createCharacter(input: PlayerInput): Player
+        createCharacter(input: PlayerInput): Player!
     }
 `;
 

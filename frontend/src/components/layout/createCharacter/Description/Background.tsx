@@ -16,11 +16,11 @@ const Background = () => {
 
     useEffect(() => {
         M.AutoInit();
-        dispatch(getBackground(backgroundName));
-    }, [backgroundName, dispatch]);
+    }, []);
 
     const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setBackgroundName(e.target.value);
+        dispatch(getBackground(e.target.value));
     };
 
     return (

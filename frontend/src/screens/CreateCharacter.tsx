@@ -1,19 +1,30 @@
 import React, { useEffect } from 'react';
+import { useHistory } from 'react-router';
 import { useDispatch } from 'react-redux';
+import { useMutation } from '@apollo/client';
 import { useLoadData } from '../hooks/useLoadData';
 import Race from '../components/layout/createCharacter/Race/Race';
 import CharClass from '../components/layout/createCharacter/Class/Class';
 import Abilities from '../components/layout/createCharacter/Abilities/Abilities';
 import Description from '../components/layout/createCharacter/Description/Description';
 import Equipment from '../components/layout/createCharacter/Equipment/Equipment';
+import { createCharacter } from '../actions/player';
+import { addPlayer } from '../gql/mutations';
 
 //@ts-ignore
 import M from 'materialize-css/dist/js/materialize.js';
+import { CLEAR_PLAYER_STATE } from '../store/types/player';
 
 const CreateCharacter = () => {
+    const [runAddPlayer] = useMutation(addPlayer);
     const dispatch = useDispatch();
+    const history = useHistory();
 
     useLoadData();
+
+    useEffect(() => {
+        dispatch({ type: CLEAR_PLAYER_STATE, payload: '123' });
+    }, [dispatch]);
 
     useEffect(() => {
         M.AutoInit();
@@ -31,9 +42,9 @@ const CreateCharacter = () => {
             }
             //@ts-ignore
             data = Object.fromEntries(words);
-            data = JSON.stringify(data);
-            // await dispatch(addPlayer(data));
-            // window.location.href = '/player';
+            runAddPlayer({ variables: { input: data } });
+            dispatch(createCharacter(data));
+            history.push('/player');
         });
         new FormData(formElem!);
     };

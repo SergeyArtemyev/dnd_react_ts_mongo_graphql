@@ -16,7 +16,7 @@ export const getBackground = (background: string) => async (dispatch: ThunkDispa
     });
 };
 
-export const addPlayer = (dataObject: any) => async (dispatch: ThunkDispatch<AppState, undefined, Actions>) => {
+export const createCharacter = (dataObject: any) => async (dispatch: ThunkDispatch<AppState, undefined, Actions>) => {
     dispatch({
         type: ADD_PLAYER,
         payload: dataObject,
