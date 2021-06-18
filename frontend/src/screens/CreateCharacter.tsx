@@ -8,7 +8,6 @@ import CharClass from '../components/layout/createCharacter/Class/Class';
 import Abilities from '../components/layout/createCharacter/Abilities/Abilities';
 import Description from '../components/layout/createCharacter/Description/Description';
 import Equipment from '../components/layout/createCharacter/Equipment/Equipment';
-import { createCharacter } from '../actions/player';
 import { addPlayer } from '../gql/mutations';
 
 //@ts-ignore
@@ -43,7 +42,6 @@ const CreateCharacter = () => {
             //@ts-ignore
             data = Object.fromEntries(words);
             runAddPlayer({ variables: { input: data } });
-            dispatch(createCharacter(data));
             history.push('/player');
         });
         new FormData(formElem!);

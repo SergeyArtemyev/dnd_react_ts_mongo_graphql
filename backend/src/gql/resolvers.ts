@@ -7,6 +7,7 @@ import Player from '../models/Player';
 import { getRaces } from '../controllers/races';
 import { getClasses } from '../controllers/classes';
 import { getBackground } from '../controllers/background';
+import { getPlayer } from '../controllers/player';
 
 export interface ErrorResult {
     message: string;
@@ -103,6 +104,14 @@ const resolvers: IResolvers = {
             return 'BackgroundArray';
         },
     },
+    PlayerResult: {
+        __resolveType(obj: any, context: GqlContext, info: any) {
+            if (obj.messsage) {
+                return 'ErrorResult';
+            }
+            return 'PlayerArray';
+        },
+    },
     Query: {
         getRaces: async (obj: any, args: null, ctx: GqlContext, info: any): Promise<{ races: Array<typeof Race> } | ErrorResult> => {
             try {
@@ -146,6 +155,22 @@ const resolvers: IResolvers = {
                 }
                 return {
                     message: background.result ? background.result : 'unexpected error occured',
+                };
+            } catch (err) {
+                console.log(err.message);
+                throw new Error('Error has occured, check server logs');
+            }
+        },
+        getPlayer: async (obj: any, args: null, ctx: GqlContext, info: any): Promise<{ player: Array<typeof Player> } | ErrorResult> => {
+            try {
+                const player = await getPlayer();
+                if (player.result) {
+                    return {
+                        player: player.result,
+                    };
+                }
+                return {
+                    message: player.result ? player.result : 'unexpected error occured',
                 };
             } catch (err) {
                 console.log(err.message);

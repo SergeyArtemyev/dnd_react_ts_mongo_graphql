@@ -3,17 +3,20 @@ import Heading from '../components/layout/player/Heading';
 import { AppState } from '../store/store';
 import AbilityPoints from '../components/layout/player/AbilityPoints';
 import Savings from '../components/layout/player/Savings';
-// import AcInitSpeed from "../layout/player/AcInitSpeed";
-// import Features from "../layout/player/Features";
+import AcInitSpeed from '../components/layout/player/AcInitSpeed';
+import Features from '../components/layout/player/Features';
 import Skills from '../components/layout/player/Skills';
+import { useLoadData } from '../hooks/useLoadData';
+import { Player as PlayerI } from '../store/reducers/playerReducer';
 
 export interface PlayerChildrenProps<T> {
     playerData: T;
 }
 
 const Player = () => {
-    const player = useSelector((state: AppState) => state.player);
-
+    const player: PlayerI = useSelector((state: AppState) => state.player);
+    useLoadData();
+    // SKILLS PROFF
     return (
         <section id='character-sheet'>
             <div className='container'>
@@ -34,8 +37,8 @@ const Player = () => {
                         <Skills playerData={player} />
                     </div>
                     <div className='col s6'>
-                        {/* <AcInitSpeed /> */}
-                        {/* <Features data={data} setData={setData} /> */}
+                        <AcInitSpeed playerData={player} />
+                        <Features playerData={player} />
                     </div>
                 </div>
             </div>

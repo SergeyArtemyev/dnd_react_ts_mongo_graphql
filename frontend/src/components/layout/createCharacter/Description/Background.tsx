@@ -36,7 +36,17 @@ const Background = () => {
                     <p>{info}</p>
                     <div>
                         <span className='main-color underline'>Skill Proficiencies:</span>{' '}
-                        <ul className='browser-default'>{skillProff !== undefined ? skillProff.map((skill, index) => <li key={index}> {skill} </li>) : null}</ul>
+                        <ul className='browser-default'>
+                            {skillProff !== undefined
+                                ? skillProff.map((skill, index) => (
+                                      <li key={index}>
+                                          {' '}
+                                          {skill}
+                                          <input type='text' className='hidden-input invis-input' name={`extraSkill${index + 1}`} value={skill} readOnly />
+                                      </li>
+                                  ))
+                                : null}
+                        </ul>
                         {backgroundName === 'Haunted One' ? (
                             <>
                                 <div className='row'>

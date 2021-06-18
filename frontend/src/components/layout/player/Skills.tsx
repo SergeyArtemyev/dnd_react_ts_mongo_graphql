@@ -6,9 +6,7 @@ import { useProfSkills } from '../../../hooks/useProfSkills';
 
 const Skills: FC<PlayerChildrenProps<Player>> = ({ playerData }) => {
     const [skillElements, setSkillElements] = useState<NodeListOf<HTMLSpanElement> | null>(null);
-
     const { strMod, dexMod, intMod, wisMod, charMod } = playerData;
-    // ADD SKILLS FROM BACKGROUND LIST OF PROFF SKILLS
     const profSkills = useProfSkills(playerData);
 
     useLayoutEffect(() => {
@@ -28,8 +26,6 @@ const Skills: FC<PlayerChildrenProps<Player>> = ({ playerData }) => {
     useEffect(() => {
         isProf();
     }, [isProf]);
-
-    console.log(profSkills);
 
     return (
         <div className='skills white'>

@@ -200,6 +200,10 @@ td {
     height: initial !important;
 }
 
+.invis-input {
+    visibility: hidden;
+}
+
 table.score {
     width: auto;
     font-size: 0.8rem;
