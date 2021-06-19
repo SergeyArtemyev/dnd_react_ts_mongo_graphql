@@ -102,6 +102,7 @@ export const getPlayer = gql`
             }
             ... on PlayerArray {
                 player {
+                    _id
                     race
                     extraLanguage
                     cantrip

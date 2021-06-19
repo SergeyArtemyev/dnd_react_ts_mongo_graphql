@@ -7,7 +7,8 @@ import Player from '../models/Player';
 import { getRaces } from '../controllers/races';
 import { getClasses } from '../controllers/classes';
 import { getBackground } from '../controllers/background';
-import { getPlayer } from '../controllers/player';
+import { delPlayer, getPlayer } from '../controllers/player';
+import { ObjectId } from 'mongoose';
 
 export interface ErrorResult {
     message: string;
@@ -112,6 +113,14 @@ const resolvers: IResolvers = {
             return 'PlayerArray';
         },
     },
+    DeletePlayerResult: {
+        __resolveType(obj: any, context: GqlContext, info: any) {
+            if (obj.messsage) {
+                return 'ErrorResult';
+            }
+            return 'DeleteResult';
+        },
+    },
     Query: {
         getRaces: async (obj: any, args: null, ctx: GqlContext, info: any): Promise<{ races: Array<typeof Race> } | ErrorResult> => {
             try {
@@ -154,7 +163,7 @@ const resolvers: IResolvers = {
                     };
                 }
                 return {
-                    message: background.result ? background.result : 'unexpected error occured',
+                    message: background.message ? background.message : 'unexpected error occured',
                 };
             } catch (err) {
                 console.log(err.message);
@@ -170,7 +179,7 @@ const resolvers: IResolvers = {
                     };
                 }
                 return {
-                    message: player.result ? player.result : 'unexpected error occured',
+                    message: player.message ? player.message : 'unexpected error occured',
                 };
             } catch (err) {
                 console.log(err.message);
@@ -186,6 +195,24 @@ const resolvers: IResolvers = {
                 });
                 await player.save();
                 return player;
+            } catch (err) {
+                console.log(err);
+                throw new Error('Error has occured, check server logs');
+            }
+        },
+        deletePlayer: async (obj: any, args: { id: ObjectId }, ctx: GqlContext, info: any): Promise<{ result: string } | ErrorResult> => {
+            try {
+                const player = await delPlayer(args.id);
+
+                if (player.result) {
+                    return {
+                        result: player.result,
+                    };
+                }
+
+                return {
+                    message: player.message ? player.message : 'unexpected error occured',
+                };
             } catch (err) {
                 console.log(err);
                 throw new Error('Error has occured, check server logs');

@@ -8,7 +8,6 @@ const Skills: FC<PlayerChildrenProps<Player>> = ({ playerData }) => {
     const [skillElements, setSkillElements] = useState<NodeListOf<HTMLSpanElement> | null>(null);
     const { strMod, dexMod, intMod, wisMod, charMod } = playerData;
     const profSkills = useProfSkills(playerData);
-
     useLayoutEffect(() => {
         setSkillElements(document.querySelectorAll('.skill'));
     }, []);

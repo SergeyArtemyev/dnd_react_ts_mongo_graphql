@@ -1,13 +1,18 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { PlayerChildrenProps } from '../../../screens/Player';
 import { Player } from '../../../store/reducers/playerReducer';
 import ClassFeature from './ClassFeature';
-// import RacialTraits from "../player/RacialTraits";
-// import CharDescription from "../player/CharDescription";
-// import CharEquipment from "../player/CharEquipment";
-// import CharProficiencies from "../player/CharProficiencies";
+import RacialTraits from './RacialTraits';
+import CharDescription from './CharDescription';
+import CharEquipment from './CharEquipment';
+import CharProficiencies from './CharProficiencies';
+//@ts-ignore
+import M from 'materialize-css/dist/js/materialize.js';
 
 const Features: FC<PlayerChildrenProps<Player>> = ({ playerData }) => {
+    useEffect(() => {
+        M.AutoInit();
+    }, []);
     return (
         <div className='row tab-container'>
             <div className='col s12'>
@@ -28,21 +33,25 @@ const Features: FC<PlayerChildrenProps<Player>> = ({ playerData }) => {
                     </li>
                 </ul>
             </div>
-            <div>
-                <div id='featuresTraits' className='col s12'>
-                    <div className='white p-1'>
-                        <ClassFeature playerData={playerData} />
-                        {/* <RacialTraits /> */}
-                    </div>
+            <div id='featuresTraits' className='col s12'>
+                <div className='white p-1'>
+                    <ClassFeature playerData={playerData} />
+                    <RacialTraits playerData={playerData} />
                 </div>
-                <div id='charDescription' className='col s12'>
-                    <div className='white p-1'>{/* <CharDescription data={data} setData={setData} /> */}</div>
+            </div>
+            <div id='charDescription' className='col s12'>
+                <div className='white p-1'>
+                    <CharDescription playerData={playerData} />
                 </div>
-                <div id='charEquipment' className='col s12'>
-                    <div className='white p-1'>{/* <CharEquipment /> */}</div>
+            </div>
+            <div id='charEquipment' className='col s12'>
+                <div className='white p-1'>
+                    <CharEquipment playerData={playerData} />
                 </div>
-                <div id='charProficiencies' className='col s12'>
-                    <div className='white p-1'>{/* <CharProficiencies /> */}</div>
+            </div>
+            <div id='charProficiencies' className='col s12'>
+                <div className='white p-1'>
+                    <CharProficiencies playerData={playerData} />
                 </div>
             </div>
         </div>

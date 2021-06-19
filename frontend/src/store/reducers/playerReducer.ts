@@ -1,6 +1,8 @@
-import { GET_PLAYER_RACE, GET_PLAYER_CLASS, GET_PLAYER_AVATAR, GET_PLAYER_BACKGROUND, ADD_PLAYER, CLEAR_PLAYER_STATE } from '../types/player';
+import { ObjectId } from 'mongoose';
+import { GET_PLAYER_RACE, GET_PLAYER_CLASS, GET_PLAYER_AVATAR, GET_PLAYER_BACKGROUND, ADD_PLAYER, CLEAR_PLAYER_STATE, DELETE_PLAYER } from '../types/player';
 
 export interface Player {
+    _id?: ObjectId;
     race?: string;
     extraLanguage?: string;
     cantrip?: string;
@@ -97,6 +99,7 @@ export const playerReducer = (state: Player = {}, action: PlayerAction) => {
             };
         case ADD_PLAYER:
             return { ...payload };
+        case DELETE_PLAYER:
         case CLEAR_PLAYER_STATE:
             return {};
         default:

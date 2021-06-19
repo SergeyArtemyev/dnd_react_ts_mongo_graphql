@@ -69,3 +69,16 @@ export const addPlayer = gql`
         }
     }
 `;
+
+export const deletePlayer = gql`
+    mutation DeletePlayer($id: ID!) {
+        deletePlayer(id: $id) {
+            ... on ErrorResult {
+                message
+            }
+            ... on DeleteResult {
+                result
+            }
+        }
+    }
+`;

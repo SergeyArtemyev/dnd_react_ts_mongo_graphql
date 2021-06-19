@@ -2,15 +2,23 @@ import { FC } from 'react';
 import { useHistory } from 'react-router';
 import { Player } from '../../../store/reducers/playerReducer';
 import { PlayerChildrenProps } from '../../../screens/Player';
+import { useDispatch } from 'react-redux';
+import { useMutation } from '@apollo/client';
+import { deletePlayer } from '../../../gql/mutations';
+import { deletePlayer as delPlayer } from '../../../actions/player';
 
 const Heading: FC<PlayerChildrenProps<Player>> = ({ playerData }) => {
-    const { race, playerClass, background, charName, alignment, avatar } = playerData;
+    const [runDeletePlayer, { data }] = useMutation(deletePlayer);
+    const { _id, race, playerClass, background, charName, alignment, avatar } = playerData;
     const history = useHistory();
+    const dispatch = useDispatch();
 
     const onClick = () => {
-        // deleteChar();
+        runDeletePlayer({ variables: { id: _id } });
+        dispatch(delPlayer());
         history.push('/');
     };
+    console.log(data.deletePlayer.result);
 
     return (
         <div className='row heading'>

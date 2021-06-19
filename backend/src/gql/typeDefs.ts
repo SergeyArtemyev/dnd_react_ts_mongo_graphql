@@ -163,6 +163,7 @@ const typeDefs = gql`
     }
 
     type Player {
+        _id: ID!
         race: String!
         extraLanguage: String
         cantrip: String
@@ -234,6 +235,12 @@ const typeDefs = gql`
 
     union PlayerResult = PlayerArray | ErrorResult
 
+    type DeleteResult {
+        result: String!
+    }
+
+    union DeletePlayerResult = DeleteResult | ErrorResult
+
     type Query {
         getRaces: RacesResult!
         getClasses: ClassesResult!
@@ -243,6 +250,7 @@ const typeDefs = gql`
 
     type Mutation {
         createCharacter(input: PlayerInput): Player!
+        deletePlayer(id: ID!): DeletePlayerResult!
     }
 `;
 

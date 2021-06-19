@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loadRaces } from '../actions/races';
 import { loadClasses } from '../actions/classes';
@@ -8,6 +8,7 @@ import { getRaces, getClasses, getBackground, getPlayer } from '../gql/queries';
 import { createCharacter } from '../actions/player';
 
 export const useLoadData = () => {
+    const [loading, setLoading] = useState(true);
     const { data: racesData } = useQuery(getRaces);
     const { data: classesData } = useQuery(getClasses);
     const { data: backgroundData } = useQuery(getBackground);
@@ -15,11 +16,19 @@ export const useLoadData = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (racesData && classesData && backgroundData && playerData) {
+        if (racesData && classesData && backgroundData) {
             dispatch(loadRaces(racesData.getRaces.races));
             dispatch(loadClasses(classesData.getClasses.classes));
             dispatch(loadBackground(backgroundData.getBackground.background));
-            dispatch(createCharacter(playerData.getPlayer.player[0]));
         }
-    }, [dispatch, racesData, classesData, backgroundData, playerData]);
+    }, [dispatch, racesData, classesData, backgroundData]);
+
+    useEffect(() => {
+        if (playerData && playerData.getPlayer.player.length > 0) {
+            dispatch(createCharacter(playerData.getPlayer.player[0]));
+            setLoading(false);
+        }
+    }, [dispatch, playerData]);
+
+    return loading;
 };

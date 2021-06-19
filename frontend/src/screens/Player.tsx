@@ -15,9 +15,10 @@ export interface PlayerChildrenProps<T> {
 
 const Player = () => {
     const player: PlayerI = useSelector((state: AppState) => state.player);
-    useLoadData();
-    // SKILLS PROFF
-    return (
+
+    const loading = useLoadData();
+
+    return !loading ? (
         <section id='character-sheet'>
             <div className='container'>
                 <div className='row'>
@@ -43,7 +44,7 @@ const Player = () => {
                 </div>
             </div>
         </section>
-    );
+    ) : null;
 };
 
 export default Player;
