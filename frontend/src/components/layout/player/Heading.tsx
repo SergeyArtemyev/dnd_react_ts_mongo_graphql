@@ -8,7 +8,7 @@ import { deletePlayer } from '../../../gql/mutations';
 import { deletePlayer as delPlayer } from '../../../actions/player';
 
 const Heading: FC<PlayerChildrenProps<Player>> = ({ playerData }) => {
-    const [runDeletePlayer, { data }] = useMutation(deletePlayer);
+    const [runDeletePlayer] = useMutation(deletePlayer);
     const { _id, race, playerClass, background, charName, alignment, avatar } = playerData;
     const history = useHistory();
     const dispatch = useDispatch();
@@ -18,7 +18,6 @@ const Heading: FC<PlayerChildrenProps<Player>> = ({ playerData }) => {
         dispatch(delPlayer());
         history.push('/');
     };
-    console.log(data.deletePlayer.result);
 
     return (
         <div className='row heading'>

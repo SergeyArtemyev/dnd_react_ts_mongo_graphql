@@ -110,7 +110,7 @@ const resolvers: IResolvers = {
             if (obj.messsage) {
                 return 'ErrorResult';
             }
-            return 'PlayerArray';
+            return 'Player';
         },
     },
     DeletePlayerResult: {
@@ -170,13 +170,11 @@ const resolvers: IResolvers = {
                 throw new Error('Error has occured, check server logs');
             }
         },
-        getPlayer: async (obj: any, args: null, ctx: GqlContext, info: any): Promise<{ player: Array<typeof Player> } | ErrorResult> => {
+        getPlayer: async (obj: any, args: { id: ObjectId }, ctx: GqlContext, info: any): Promise<typeof Player | ErrorResult> => {
             try {
-                const player = await getPlayer();
+                const player = await getPlayer(args.id);
                 if (player.result) {
-                    return {
-                        player: player.result,
-                    };
+                    return player.result;
                 }
                 return {
                     message: player.message ? player.message : 'unexpected error occured',

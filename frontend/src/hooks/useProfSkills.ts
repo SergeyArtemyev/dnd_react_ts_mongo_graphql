@@ -5,13 +5,13 @@ export const useProfSkills = (dataObject: Player): string[] => {
     const [skills, setSkills] = useState<string[]>([]);
 
     useEffect(() => {
-        const arr = [];
+        const uniqueSkills = new Set<string>();
         for (let [key, value] of Object.entries(dataObject)) {
             if (/skill/i.test(key)) {
-                arr.push(value);
+                uniqueSkills.add(value);
             }
         }
-        setSkills(arr);
+        setSkills([...uniqueSkills]);
         // eslint-disable-next-line
     }, []);
     return skills;

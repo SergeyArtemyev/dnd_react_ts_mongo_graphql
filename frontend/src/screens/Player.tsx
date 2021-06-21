@@ -8,6 +8,7 @@ import Features from '../components/layout/player/Features';
 import Skills from '../components/layout/player/Skills';
 import { useLoadData } from '../hooks/useLoadData';
 import { Player as PlayerI } from '../store/reducers/playerReducer';
+import { useLoadPlayer } from '../hooks/useLoadPlayer';
 
 export interface PlayerChildrenProps<T> {
     playerData: T;
@@ -15,10 +16,10 @@ export interface PlayerChildrenProps<T> {
 
 const Player = () => {
     const player: PlayerI = useSelector((state: AppState) => state.player);
+    const loadingData = useLoadData();
+    const loadingPlayer = useLoadPlayer();
 
-    const loading = useLoadData();
-
-    return !loading ? (
+    return !loadingData && !loadingPlayer ? (
         <section id='character-sheet'>
             <div className='container'>
                 <div className='row'>

@@ -229,11 +229,7 @@ const typeDefs = gql`
         stuff: String!
     }
 
-    type PlayerArray {
-        player: [Player!]
-    }
-
-    union PlayerResult = PlayerArray | ErrorResult
+    union PlayerResult = Player | ErrorResult
 
     type DeleteResult {
         result: String!
@@ -245,7 +241,7 @@ const typeDefs = gql`
         getRaces: RacesResult!
         getClasses: ClassesResult!
         getBackground: BackgroundResult!
-        getPlayer: PlayerResult!
+        getPlayer(id: ID!): PlayerResult!
     }
 
     type Mutation {

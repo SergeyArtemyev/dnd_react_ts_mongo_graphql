@@ -16,7 +16,7 @@ const Background = () => {
 
     useEffect(() => {
         M.AutoInit();
-    }, []);
+    }, [backFeature]);
 
     const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setBackgroundName(e.target.value);

@@ -1,17 +1,17 @@
 import { ObjectId } from 'mongoose';
 import Player from '../models/Player';
-import { QueryArrayResult, QuerySingleResult } from './resultTypes';
+import { QuerySingleResult } from './resultTypes';
 
-export const getPlayer = async (): Promise<QueryArrayResult<typeof Player>> => {
+export const getPlayer = async (id: ObjectId): Promise<QuerySingleResult<typeof Player>> => {
     try {
-        const players: Array<typeof Player> = await Player.find({});
-        if (!players) {
+        const player: typeof Player = await Player.findById(id);
+        if (!player) {
             return {
                 message: 'Player not found',
             };
         }
         return {
-            result: players,
+            result: player,
         };
     } catch (err) {
         console.error(err.message);

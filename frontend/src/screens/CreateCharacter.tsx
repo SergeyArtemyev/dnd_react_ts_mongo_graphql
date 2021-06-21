@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { useMutation } from '@apollo/client';
@@ -13,17 +13,28 @@ import { addPlayer } from '../gql/mutations';
 //@ts-ignore
 import M from 'materialize-css/dist/js/materialize.js';
 import { CLEAR_PLAYER_STATE } from '../store/types/player';
+import { useControls } from '../hooks/useControls';
+import { validation } from '../utils/validation';
+import Alert from '../components/Alert';
 
 const CreateCharacter = () => {
-    const [runAddPlayer] = useMutation(addPlayer);
+    const [alertData, setAlertData] = useState<string[]>([]);
+    const [runAddPlayer, { data: newPlayer }] = useMutation(addPlayer);
     const dispatch = useDispatch();
     const history = useHistory();
+    const [nextButton, prevButton] = useControls();
 
     useLoadData();
 
     useEffect(() => {
-        dispatch({ type: CLEAR_PLAYER_STATE, payload: '123' });
+        dispatch({ type: CLEAR_PLAYER_STATE });
     }, [dispatch]);
+
+    useEffect(() => {
+        if (newPlayer) {
+            history.push(`/player/${newPlayer.createCharacter._id}`);
+        }
+    }, [history, newPlayer]);
 
     useEffect(() => {
         M.AutoInit();
@@ -41,8 +52,12 @@ const CreateCharacter = () => {
             }
             //@ts-ignore
             data = Object.fromEntries(words);
-            runAddPlayer({ variables: { input: data } });
-            history.push('/player');
+            const missedFields = validation(data);
+            if (missedFields.length > 0) {
+                setAlertData(missedFields);
+            } else {
+                runAddPlayer({ variables: { input: data } });
+            }
         });
         new FormData(formElem!);
     };
@@ -51,7 +66,9 @@ const CreateCharacter = () => {
         <section id='char-create'>
             <div className='container'>
                 <h4 className='center-align create-header'>Welcome to the character creation page</h4>
+
                 <div className='main-window'>
+                    {alertData.length > 0 ? <Alert alertData={alertData} setAlertData={setAlertData} /> : null}
                     <form id='creation-form' onSubmit={onSubmit}>
                         <div className='row'>
                             <div className='col s12'>
@@ -61,16 +78,16 @@ const CreateCharacter = () => {
                                             Race
                                         </a>
                                     </li>
-                                    <li className='tab col s2'>
+                                    <li className='tab col s2 disabled'>
                                         <a href='#class-tab'>Class</a>
                                     </li>
-                                    <li className='tab col s2'>
+                                    <li className='tab col s2 disabled'>
                                         <a href='#ability-tab'>Ability</a>
                                     </li>
-                                    <li className='tab col s2'>
+                                    <li className='tab col s2 disabled'>
                                         <a href='#description-tab'>Description</a>
                                     </li>
-                                    <li className='tab col s2'>
+                                    <li className='tab col s2 disabled'>
                                         <a href='#equipment-tab'>Equipment</a>
                                     </li>
                                 </ul>
@@ -91,8 +108,17 @@ const CreateCharacter = () => {
                                 <Equipment />
                             </div>
                         </div>
+                        {/* hidden submit */}
                         <button type='submit'>submit</button>
                     </form>
+                    <div className='form-btns'>
+                        <button className='prev' onClick={prevButton}>
+                            <i className='material-icons'>arrow_back</i> <span>Prev</span>
+                        </button>
+                        <button className='next' onClick={nextButton}>
+                            <span>Next</span> <i className='material-icons'>arrow_forward</i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>

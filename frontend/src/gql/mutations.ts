@@ -3,6 +3,7 @@ import { gql } from '@apollo/client';
 export const addPlayer = gql`
     mutation CreateCharacter($input: PlayerInput) {
         createCharacter(input: $input) {
+            _id
             race
             extraLanguage
             cantrip
