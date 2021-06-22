@@ -11,7 +11,6 @@ const App = () => {
     return (
         <Router>
             <Navbar />
-            {/* header */}
             <Switch>
                 <Route exact path='/' component={Home} />
                 <Route path='/create' component={CreateCharacter} />

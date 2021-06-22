@@ -14,6 +14,7 @@ const Race = React.memo(() => {
     const { avatar: raceAvatar, name: raceName, onChangeAvatar } = useAvatar();
     const dispatch = useDispatch();
 
+    // this function allows to use controls (+/-) in ability components
     const initAb = useCallback(initAbility, [raceName]);
 
     useEffect(() => {

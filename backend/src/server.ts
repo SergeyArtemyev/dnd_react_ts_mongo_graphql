@@ -17,6 +17,7 @@ app.use(express.json());
 app.use(
     cors({
         credentials: true,
+        // i had to live a heroku url here because env var in heroku setting didn't worked, or i messed up
         origin: process.env.CLIENT_URL ? process.env.CLIENT_URL : 'https://murmuring-gorge-50640.herokuapp.com',
     })
 );

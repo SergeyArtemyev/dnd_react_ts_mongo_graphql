@@ -40,6 +40,8 @@ const CreateCharacter = () => {
         M.AutoInit();
     }, []);
 
+    // i chose this option over add everything to the state because of the simplisity
+    // i add to the state only fields that other components use
     const onSubmit = (e: React.MouseEvent<HTMLFormElement, MouseEvent>) => {
         e.preventDefault();
         let formElem = document.querySelector('form');

@@ -3,6 +3,7 @@ import initEquipment from '../../../../utils/initEqupment';
 import EqCheckbox from './EqCheckbox';
 
 const Equipment = React.memo(() => {
+    // this function allows to choose only one option with fancy css
     const initEq = useCallback(initEquipment, []);
 
     useEffect(() => {
