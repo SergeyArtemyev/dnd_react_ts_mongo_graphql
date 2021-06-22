@@ -1,4 +1,6 @@
+import { Link } from 'react-router-dom';
 import logo from '../../../img/dnd-logo1.png';
+
 const Showcase = () => {
     return (
         <header>
@@ -15,13 +17,9 @@ const Showcase = () => {
                                     <p>the world where there are no boundaries for a fantasy</p>
                                 </div>
                                 <div className='card-action'>
-                                    <a
-                                        href='/create'
-                                        className='waves-effect waves-light red lighten-1 btn'
-                                    >
-                                        <i className='material-icons right'>build</i>Create
-                                        Character
-                                    </a>
+                                    <Link to='/create' className='waves-effect waves-light red lighten-1 btn'>
+                                        <i className='material-icons right'>build</i>Create Character
+                                    </Link>
                                 </div>
                             </div>
                         </div>

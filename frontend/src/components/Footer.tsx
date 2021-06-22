@@ -14,11 +14,7 @@ const Footer = () => {
                             <input id='email_inline' type='email' className='validate' />
                             <label htmlFor='email_inline'>Enter your email</label>
                             <span className='helper-text'>
-                                <button
-                                    className='btn waves-effect waves-light red lighten-1'
-                                    type='submit'
-                                    name='action'
-                                >
+                                <button className='btn waves-effect waves-light red lighten-1' name='action'>
                                     Subscribe
                                     <i className='material-icons right'>send</i>
                                 </button>
