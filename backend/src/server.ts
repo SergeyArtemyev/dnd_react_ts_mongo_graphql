@@ -5,6 +5,8 @@ import dotenv from 'dotenv';
 import typeDefs from './gql/typeDefs';
 import resolvers from './gql/resolvers';
 import connectDB from './config/db';
+import path from 'path';
+import { ApolloServerPluginInlineTrace } from 'apollo-server-core';
 
 dotenv.config();
 
@@ -28,6 +30,15 @@ const apolloServer = new ApolloServer({
 });
 
 apolloServer.applyMiddleware({ app, cors: false });
+
+// Serve static assets in production
+if (process.env.NODE_ENV === 'production') {
+    // Set static folder
+    app.use(express.static('frontend/build'));
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+    });
+}
 
 const PORT = process.env.PORT || 8000;
 
