@@ -6,7 +6,6 @@ import typeDefs from './gql/typeDefs';
 import resolvers from './gql/resolvers';
 import connectDB from './config/db';
 import path from 'path';
-import { ApolloServerPluginInlineTrace } from 'apollo-server-core';
 
 dotenv.config();
 
